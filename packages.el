@@ -4,13 +4,18 @@
 
 ;;; Code:
 
-;; Ivy
+;; exec-path-from-shell
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
+;; ivy
 (use-package ivy
   :config
   (ivy-mode)
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
 
-;; Flycheck
+;; flycheck
 (use-package flycheck
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
@@ -23,7 +28,8 @@
             (flycheck-mode t)
             (when (executable-find "eslint")
               (flycheck-select-checker 'javascript-eslint))))
-  (add-hook 'js2-mode-hook #'add-node-modules-path))
+  (add-hook 'js2-mode-hook #'add-node-modules-path)
+  (js2-mode-hide-warnings-and-errors))
 
 (provide 'packages.el)
 ;;; packages.el ends here
