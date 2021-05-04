@@ -6,6 +6,7 @@
 
 ;; Counsel
 (global-set-key (kbd "M-x") 'counsel-M-x) ; Alt+x, Counsel
+(global-set-key (kbd "C-<tab>") 'counsel-find-file)
 
 ;; ibuffer
 (global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
@@ -19,9 +20,6 @@
 (global-set-key (kbd "s-<left>") 'previous-buffer) ; Cmd+left-arrow, moves to previous buffer
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-this-buffer); Cmd+w, close buffer
-
-;; Projectile
-(global-set-key (kbd "C-<tab>") 'projectile-find-file)
 
 ;; VC things
 (define-prefix-command 'vc-map)
