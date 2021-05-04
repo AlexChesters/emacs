@@ -1,6 +1,5 @@
 (setq tab-width 2) ; Default tab-width
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
-(add-hook 'focus-out-hook 'save-all) ; Auto-saving when losing focus
 (setq inhibit-splash-screen t) ; Disable splash screen
 (global-visual-line-mode t) ; Turning on visual line mode
 (global-linum-mode t) ; Always show line numbers
