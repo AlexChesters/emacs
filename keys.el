@@ -5,6 +5,7 @@
 
 ;; Navigation
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
+(global-set-key (kbd "s-w") 'kill-this-buffer); Cmd+w, close buffer
 
 ;; VC things
 (define-prefix-command 'vc-map)
