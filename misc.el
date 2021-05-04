@@ -1,3 +1,9 @@
+;;; misc.el --- Miscellaneous configuration
+
+;;; Commentary:
+
+;;; Code:
+
 (setq tab-width 2) ; Default tab-width
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
 (setq inhibit-splash-screen t) ; Disable splash screen
@@ -9,3 +15,6 @@
 (tool-bar-mode -1) ; Hiding toolbar
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ; Hide scroll bar
 (show-paren-mode 1) ; Always show matching parenthesis
+
+(provide 'misc.el)
+;;; misc.el ends here

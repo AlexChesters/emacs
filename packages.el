@@ -1,3 +1,9 @@
+;;; packages.el --- Configuration of third-party emacs packages
+
+;;; Commentary:
+
+;;; Code:
+
 ;; Ivy
 (use-package ivy
   :config
@@ -8,3 +14,6 @@
 (use-package flycheck
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(provide 'packages.el)
+;;; packages.el ends here

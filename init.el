@@ -1,3 +1,9 @@
+;;; init.el --- My custom emacs configuration
+
+;;; Commentary:
+
+;;; Code:
+
 ;; Melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -24,3 +30,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(provide 'init.el)
+;;; init.el ends here

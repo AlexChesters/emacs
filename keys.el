@@ -1,3 +1,9 @@
+;;; keys.el --- Custom keybindings
+
+;;; Commentary:
+
+;;; Code:
+
 ;; Buffer interaction
 (define-prefix-command 'buffer-map)
 (global-set-key (kbd "C-c b") 'buffer-map)
@@ -28,3 +34,6 @@
 (define-key 'vc-map (kbd "p") 'magit-push-current)
 (define-key 'vc-map (kbd "P") 'magit-pull-current)
 (define-key 'vc-map (kbd "c") 'vc-next-action)
+
+(provide 'keys)
+;;; keys.el ends here
