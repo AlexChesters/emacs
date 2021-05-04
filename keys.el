@@ -2,6 +2,7 @@
 (define-prefix-command 'buffer-map)
 (global-set-key (kbd "C-c b") 'buffer-map)
 (define-key 'buffer-map (kbd "<return>") 'eval-buffer)
+(global-set-key (kbd "s-F") 'delete-other-windows) ; Cmd+F, delete all other windows
 
 ;; Navigation
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
