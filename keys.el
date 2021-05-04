@@ -5,6 +5,12 @@
 (global-set-key (kbd "s-F") 'delete-other-windows) ; Cmd+F, delete all other windows
 
 ;; Navigation
+(global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer
+(global-set-key (kbd "M-s-<right>") 'windmove-right) ; Cmd+alt+right, Move right buffer
+(global-set-key (kbd "M-s-<up>") 'windmove-up) ; Cmd+alt+up, Move up buffer
+(global-set-key (kbd "M-s-<down>") 'windmove-down) ; Cmd+alt+down, Move down buffer
+(global-set-key (kbd "s-<right>") 'next-buffer) ; Cmd+right-arrow, moves to next buffer
+(global-set-key (kbd "s-<left>") 'previous-buffer) ; Cmd+left-arrow, moves to previous buffer
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-this-buffer); Cmd+w, close buffer
 
