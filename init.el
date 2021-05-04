@@ -6,5 +6,6 @@
 ;; Use package
 (require 'use-package)
 
-;; Custom filess
-(load-file "/Users/chesta02/.emacs.d/init/keys.el") ; Loading key-bindings
+;; Custom files
+(load-file "/Users/chesta02/.emacs.d/keys.el") ; Loading key-bindings
+(load-file "/Users/chesta02/.emacs.d/misc.el") ; Loading miscellanous configuration
