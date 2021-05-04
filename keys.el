@@ -12,7 +12,7 @@
 
 ;; Counsel
 (global-set-key (kbd "M-x") 'counsel-M-x) ; Alt+x, Counsel
-(global-set-key (kbd "C-<tab>") 'counsel-find-file)
+(global-set-key (kbd "M-<tab>") 'counsel-find-file)
 
 ;; ibuffer
 (global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
