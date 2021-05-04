@@ -7,6 +7,9 @@
 ;; Counsel
 (global-set-key (kbd "M-x") 'counsel-M-x) ; Alt+x, Counsel
 
+;; ibuffer
+(global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
+
 ;; Navigation
 (global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer
 (global-set-key (kbd "M-s-<right>") 'windmove-right) ; Cmd+alt+right, Move right buffer
