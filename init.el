@@ -9,3 +9,8 @@
 ;; Custom files
 (load-file "/Users/chesta02/.emacs.d/keys.el") ; Loading key-bindings
 (load-file "/Users/chesta02/.emacs.d/misc.el") ; Loading miscellanous configuration
+
+;; Projectile
+(use-package projectile
+  :config
+  (projectile-mode))
