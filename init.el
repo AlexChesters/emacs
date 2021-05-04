@@ -10,6 +10,12 @@
 (load-file "/Users/chesta02/.emacs.d/keys.el") ; Loading key-bindings
 (load-file "/Users/chesta02/.emacs.d/misc.el") ; Loading miscellanous configuration
 
+;; Ivy
+(use-package ivy
+  :config
+  (ivy-mode)
+  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
+
 ;; Projectile
 (use-package projectile
   :config
