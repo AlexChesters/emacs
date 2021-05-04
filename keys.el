@@ -1,0 +1,15 @@
+;; Buffer interaction
+(define-prefix-command 'buffer-map)
+(global-set-key (kbd "C-c b") 'buffer-map)
+(define-key 'buffer-map (kbd "<return>") 'eval-buffer)
+
+;; Navigation
+(global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
+
+;; VC things
+(define-prefix-command 'vc-map)
+(global-set-key (kbd "C-c v") 'vc-map)
+(define-key 'vc-map (kbd "s") 'magit-status)
+(define-key 'vc-map (kbd "p") 'magit-push-current)
+(define-key 'vc-map (kbd "P") 'magit-pull-current)
+(define-key 'vc-map (kbd "c") 'vc-next-action)

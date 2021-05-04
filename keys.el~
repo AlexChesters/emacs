@@ -1,0 +1,2 @@
+;; Navigation
+(global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
