@@ -4,6 +4,16 @@
 
 ;;; Code:
 
+;; aggressive-indent
+(use-package aggressive-indent
+  :config
+  (aggressive-indent-mode))
+
+;; dtrt-indent
+(add-to-list 'load-path "/Users/chesta02/.emacs.d/packages/dtrt-indent/")
+(require 'dtrt-indent)
+(dtrt-indent-global-mode)
+
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :config

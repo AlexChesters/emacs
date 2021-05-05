@@ -1,0 +1,3 @@
+[submodule "packages/dtrt-indent"]
+	path = packages/dtrt-indent
+	url = git@github.com:jscheid/dtrt-indent.git

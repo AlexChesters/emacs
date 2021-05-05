@@ -23,7 +23,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
   '(package-selected-packages
-     '(shell-pop yaml-mode melancholy-theme exec-path-from-shell add-node-modules-path js2-mode flycheck powerline use-package projectile neotree magit counsel)))
+     '(aggressive-indent shell-pop yaml-mode melancholy-theme exec-path-from-shell add-node-modules-path js2-mode flycheck powerline use-package projectile neotree magit counsel))
+ '(shell-pop-window-size 15))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

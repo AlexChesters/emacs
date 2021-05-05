@@ -6,6 +6,7 @@
 
 (setq tab-width 2) ; Default tab-width
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
+(setq-default indent-tabs-mode nil) ; Use spaces over tabs
 (setq inhibit-splash-screen t) ; Disable splash screen
 (global-visual-line-mode t) ; Turning on visual line mode
 (global-linum-mode t) ; Always show line numbers
