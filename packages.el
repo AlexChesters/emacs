@@ -20,6 +20,7 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+;; js2-mode
 (use-package js2-mode
   :mode ("\\.js$" . js2-mode)
   :config
@@ -30,6 +31,10 @@
               (flycheck-select-checker 'javascript-eslint))))
   (add-hook 'js2-mode-hook #'add-node-modules-path)
   (js2-mode-hide-warnings-and-errors))
+
+;; yaml-mode
+(use-package yaml-mode
+  :mode ("\\.ya?ml$" . yaml-mode))
 
 (provide 'packages.el)
 ;;; packages.el ends here
