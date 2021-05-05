@@ -27,6 +27,9 @@
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-this-buffer); Cmd+w, close buffer
 
+;; shell-pop
+(global-set-key (kbd "s-t") 'shell-pop); Cmd+t, open shell
+
 ;; VC things
 (define-prefix-command 'vc-map)
 (global-set-key (kbd "C-c v") 'vc-map)

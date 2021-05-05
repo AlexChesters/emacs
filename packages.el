@@ -32,6 +32,11 @@
   (add-hook 'js2-mode-hook #'add-node-modules-path)
   (js2-mode-hide-warnings-and-errors))
 
+;; shell-pop
+(use-package shell-pop
+  :config
+  (setq shell-pop-window-size 20))
+
 ;; yaml-mode
 (use-package yaml-mode
   :mode ("\\.ya?ml$" . yaml-mode))
