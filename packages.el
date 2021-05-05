@@ -18,6 +18,7 @@
 ;; flycheck
 (use-package flycheck
   :config
+  (setq flycheck-emacs-lisp-load-path "inherit")
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; js2-mode
