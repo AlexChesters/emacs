@@ -17,7 +17,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ; Hide scroll bar
 (show-paren-mode 1) ; Always show matching parenthesis
 (set-frame-font "Fira Code 16")
-(setq completions-format 'vertical)
+(load-theme 'spacemacs-dark t)
 
 (provide 'misc.el)
 ;;; misc.el ends here
