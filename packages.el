@@ -24,17 +24,16 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; ivy
-(use-package ivy
-  :config
-  (ivy-mode)
-  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
-
 ;; flycheck
 (use-package flycheck
   :config
   (setq flycheck-emacs-lisp-load-path "inherit")
   (add-hook 'after-init-hook #'global-flycheck-mode))
+
+;; helm
+(use-package helm
+  :config
+  (helm-mode 1))
 
 ;; Js2-mode
 (use-package js2-mode
