@@ -13,9 +13,9 @@
 (require 'use-package)
 
 ;; Custom files
-(load-file "/Users/chesta02/.emacs.d/keys.el") ; Loading key-bindings
-(load-file "/Users/chesta02/.emacs.d/misc.el") ; Loading miscellanous configuration
-(load-file "/Users/chesta02/.emacs.d/packages.el") ; Loading packages
+(load-file "~/.emacs.d/keys.el") ; Loading key-bindings
+(load-file "~/.emacs.d/misc.el") ; Loading miscellanous configuration
+(load-file "~/.emacs.d/packages.el") ; Loading packages
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

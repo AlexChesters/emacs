@@ -15,7 +15,7 @@
   (drag-stuff-mode t))
 
 ;; dtrt-indent
-(add-to-list 'load-path "/Users/chesta02/.emacs.d/packages/dtrt-indent/")
+(add-to-list 'load-path "~/.emacs.d/packages/dtrt-indent/")
 (require 'dtrt-indent)
 (dtrt-indent-global-mode)
 
