@@ -16,7 +16,7 @@
 (tool-bar-mode -1) ; Hiding toolbar
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ; Hide scroll bar
 (show-paren-mode 1) ; Always show matching parenthesis
-(set-frame-font "Fira Code 14")
+(set-frame-font "Fira Code 16")
 
 (provide 'misc.el)
 ;;; misc.el ends here
