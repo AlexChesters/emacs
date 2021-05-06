@@ -9,6 +9,11 @@
   :config
   (aggressive-indent-mode))
 
+;; drag-stuff
+(use-package drag-stuff
+  :config
+  (drag-stuff-mode t))
+
 ;; dtrt-indent
 (add-to-list 'load-path "/Users/chesta02/.emacs.d/packages/dtrt-indent/")
 (require 'dtrt-indent)

@@ -14,6 +14,10 @@
 (global-set-key (kbd "M-x") 'counsel-M-x) ; Alt+x, Counsel
 (global-set-key (kbd "M-<tab>") 'counsel-find-file)
 
+;; Drag-stuff
+(global-set-key (kbd "s-<up>") 'drag-stuff-up)
+(global-set-key (kbd "s-<down>") 'drag-stuff-down)
+
 ;; ibuffer
 (global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
 
