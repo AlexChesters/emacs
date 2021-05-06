@@ -17,7 +17,6 @@
 (load-file "/Users/chesta02/.emacs.d/misc.el") ; Loading miscellanous configuration
 (load-file "/Users/chesta02/.emacs.d/packages.el") ; Loading packages
 
-
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
