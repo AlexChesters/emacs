@@ -26,7 +26,8 @@
      '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
   '(package-selected-packages
      '(spacemacs-theme drag-stuff aggressive-indent shell-pop yaml-mode melancholy-theme exec-path-from-shell add-node-modules-path js2-mode flycheck powerline use-package projectile neotree magit counsel))
- '(projectile-completion-system 'ido)
+  '(projectile-completion-system 'ido)
+  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
  '(shell-pop-window-size 15))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
