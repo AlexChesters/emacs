@@ -36,13 +36,6 @@
   (setq flycheck-emacs-lisp-load-path "inherit")
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
-;; Flex
-(use-package flx-ido
-  :config
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (flx-ido-mode 1))
-
 ;; Js2-mode
 (use-package js2-mode
   :mode ("\\.js$" . js2-mode)
@@ -54,6 +47,11 @@
         (flycheck-select-checker 'javascript-eslint))))
   (add-hook 'js2-mode-hook #'add-node-modules-path)
   (js2-mode-hide-warnings-and-errors))
+
+;; Projectile
+(use-package projectile
+  :config
+  (projectile-mode))
 
 ;; shell-pop
 (use-package shell-pop

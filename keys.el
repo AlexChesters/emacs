@@ -12,7 +12,6 @@
 
 ;; Counsel
 (global-set-key (kbd "M-x") 'counsel-M-x) ; Alt+x, Counsel
-(global-set-key (kbd "M-<tab>") 'counsel-find-file)
 
 ;; Drag-stuff
 (global-set-key (kbd "s-<up>") 'drag-stuff-up)
@@ -30,6 +29,9 @@
 (global-set-key (kbd "s-<left>") 'previous-buffer) ; Cmd+left-arrow, moves to previous buffer
 (global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-buffer-and-window); Cmd+w, close buffer
+
+;; Projectile
+(global-set-key (kbd "M-<tab>") 'projectile-find-file)
 
 ;; shell-pop
 (global-set-key (kbd "s-t") 'shell-pop); Cmd+t, open shell
