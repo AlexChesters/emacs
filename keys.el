@@ -27,7 +27,7 @@
 (global-set-key (kbd "M-s-<down>") 'windmove-down) ; Cmd+alt+down, Move down buffer
 (global-set-key (kbd "s-<right>") 'next-buffer) ; Cmd+right-arrow, moves to next buffer
 (global-set-key (kbd "s-<left>") 'previous-buffer) ; Cmd+left-arrow, moves to previous buffer
-(global-set-key (kbd "s-f") 'find-file) ; Cmd+f, find file
+(global-set-key (kbd "s-f") 'helm-find-files) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-buffer-and-window); Cmd+w, close buffer
 
 ;; Projectile
