@@ -54,6 +54,7 @@
 (global-set-key (kbd "s-<left>") 'previous-buffer) ; Cmd+left-arrow, moves to previous buffer
 (global-set-key (kbd "s-f") 'helm-find-files) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-buffer-and-window); Cmd+w, close buffer
+(global-set-key (kbd "s-W") 'kill-all-buffers); Cmd+w, close all buffers
 
 (provide 'keys)
 ;;; keys.el ends here
