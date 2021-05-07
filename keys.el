@@ -38,6 +38,9 @@
 (define-key 'buffer-map (kbd "<return>") 'eval-buffer)
 (global-set-key (kbd "s-F") 'delete-other-windows) ; Cmd+F, delete all other windows
 
+;; Editing
+(global-set-key (kbd "s-k") 'kill-whole-line) ; Cmd+k, Deleting the whole line
+
 ;; Navigation
 (global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer
 (global-set-key (kbd "M-s-<right>") 'windmove-right) ; Cmd+alt+right, Move right buffer
