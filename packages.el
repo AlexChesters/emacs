@@ -57,6 +57,12 @@
   :config
   (setq shell-pop-window-size 20))
 
+;; tide
+(use-package tide
+  :config
+  (tide-setup)
+  (tide-hl-identifier-mode +1))
+
 ;; yaml-mode
 (use-package yaml-mode
   :mode ("\\.ya?ml$" . yaml-mode))
