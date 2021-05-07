@@ -3,4 +3,6 @@
   (magit-diff
     ("--no-ext-diff" "--stat"))
   (magit-dispatch nil)
-  (magit-push nil))
+  (magit-pull nil)
+  (magit-push nil)
+  (magit-stash nil))
