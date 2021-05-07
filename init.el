@@ -13,6 +13,7 @@
 (require 'use-package)
 
 ;; ensure flycheck is aware of melpa packages
+;; this must come before packages are loaded
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; Custom files
