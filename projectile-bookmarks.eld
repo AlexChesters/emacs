@@ -1,1 +1,0 @@
-("~/workspace/itv-ci-images/" "~/workspace/itv-alarm-slack-notifier/" "~/.emacs.d/" "~/workspace/" "~/code/osfs/" "~/")
