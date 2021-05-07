@@ -19,6 +19,7 @@
 (load-file "~/.emacs.d/keys.el") ; Loading key-bindings
 (load-file "~/.emacs.d/misc.el") ; Loading miscellanous configuration
 (load-file "~/.emacs.d/packages.el") ; Loading packages
+(load-file "~/.emacs.d/appearance.el") ; Loading appearance configuration
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
