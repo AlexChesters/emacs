@@ -40,6 +40,7 @@
 
 ;; Editing
 (global-set-key (kbd "s-k") 'kill-whole-line) ; Cmd+k, Deleting the whole line
+(global-set-key (kbd "s-/") 'comment-uncomment-region-or-line) ; Cmd+k, comment/uncomment the selected region or line
 
 ;; Navigation
 (global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer

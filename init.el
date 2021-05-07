@@ -16,6 +16,7 @@
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; Custom files
+(load-file "~/.emacs.d/functions.el") ; Loading custom functions
 (load-file "~/.emacs.d/keys.el") ; Loading key-bindings
 (load-file "~/.emacs.d/misc.el") ; Loading miscellanous configuration
 (load-file "~/.emacs.d/packages.el") ; Loading packages
