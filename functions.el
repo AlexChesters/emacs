@@ -14,7 +14,8 @@
 (defun kill-all-buffers ()
   "Close all open buffers."
   (interactive)
-  (mapc 'kill-buffer (buffer-list)))
+  (mapc 'kill-buffer (buffer-list))
+  (delete-window))
 
 (provide 'functions.el)
 ;;; functions.el ends here
