@@ -16,6 +16,9 @@
 ;; ibuffer
 (global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
 
+;; helm-ag
+(global-set-key (kbd "s-S") 'helm-ag-project-root)
+
 ;; Projectile
 (global-set-key (kbd "M-<tab>") 'projectile-find-file)
 
