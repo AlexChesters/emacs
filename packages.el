@@ -49,7 +49,8 @@
 ;; Projectile
 (use-package projectile
   :config
-  (projectile-mode))
+  (projectile-mode)
+  (setq projectile-switch-project-action 'projectile-dired))
 
 ;; shell-pop
 (use-package shell-pop
