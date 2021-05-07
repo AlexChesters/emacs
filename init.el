@@ -12,6 +12,9 @@
 ;; Use package
 (require 'use-package)
 
+;; ensure flycheck is aware of melpa packages
+(setq-default flycheck-emacs-lisp-load-path 'inherit)
+
 ;; Custom files
 (load-file "~/.emacs.d/keys.el") ; Loading key-bindings
 (load-file "~/.emacs.d/misc.el") ; Loading miscellanous configuration
