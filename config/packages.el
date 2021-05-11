@@ -14,6 +14,11 @@
   :config
   (drag-stuff-mode t))
 
+;; diff-hl
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode))
+
 ;; dtrt-indent
 (add-to-list 'load-path "~/.emacs.d/packages/dtrt-indent/")
 (require 'dtrt-indent)
