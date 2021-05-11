@@ -66,6 +66,11 @@
   (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+;; powerline
+(use-package powerline
+  :config
+  (powerline-default-theme))
+
 ;; Projectile
 (use-package projectile
   :config
@@ -76,6 +81,11 @@
 (use-package shell-pop
   :config
   (setq shell-pop-window-size 20))
+
+;; spaceline
+(use-package spaceline
+  :config
+  (spaceline-spacemacs-theme))
 
 ;; tide
 (use-package tide
