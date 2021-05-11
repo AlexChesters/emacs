@@ -88,10 +88,13 @@
   (spaceline-spacemacs-theme))
 
 ;; tide
-(use-package tide
-  :config
+(defun setup-tide ()
+  "Function to set up tide mode."
+  (interactive)
   (tide-setup)
   (tide-hl-identifier-mode +1))
+
+(add-hook 'typescript-mode-hook #'setup-tide)
 
 ;; yaml-mode
 (use-package yaml-mode
