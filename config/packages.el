@@ -87,6 +87,12 @@
   :config
   (setq shell-pop-window-size 20))
 
+;; smartparents
+(use-package smartparens
+  :config
+  (smartparens-global-mode)
+  (sp-local-pair '(emacs-lisp-mode text-mode) "'" nil :actions nil)) ; Prevent automatically inserting a second single quotes in some modes
+
 ;; spaceline
 (use-package spaceline
   :config
