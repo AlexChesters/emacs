@@ -58,6 +58,10 @@
     (interactive)
     (delete-other-windows)
     (kill-all-other-buffers))) ; Cmd+F, delete other windows and kill all other buffers
+(global-set-key (kbd "s-I")
+  (lambda ()
+    (interactive)
+    (find-file user-init-file))) ;; Cmd+I, opens the init.el file
 
 (provide 'keys)
 ;;; keys.el ends here
