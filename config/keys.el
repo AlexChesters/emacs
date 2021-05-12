@@ -15,7 +15,8 @@
 
 ;; helm
 (global-set-key (kbd "M-x") 'helm-M-x) ; Alt+x
-(global-set-key (kbd "s-S") 'helm-ag-project-root)
+(global-set-key (kbd "s-S") 'helm-ag-project-root) ; Cmd+S
+(global-set-key (kbd "C-s") 'helm-swoop) ; Ctrl+s
 
 ;; Projectile
 (global-set-key (kbd "M-<tab>") 'projectile-find-file) ; Alt+Tab, projectile-find-file
