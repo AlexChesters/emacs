@@ -87,7 +87,7 @@
   :config
   (setq shell-pop-window-size 20))
 
-;; smartparents
+;; smartparens
 (use-package smartparens
   :config
   (smartparens-global-mode)
