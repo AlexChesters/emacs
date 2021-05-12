@@ -24,5 +24,14 @@
     (delq (current-buffer)
       (buffer-list))))
 
+(defun open-remote-file ()
+  "Open a file on a remote machine over SSH."
+  (interactive)
+  (let
+    (
+      (user (read-string "User: "))
+      (hostname (read-string "Hostname: ")))
+    (find-file (concat "/ssh:" user "@" hostname ":/"))))
+
 (provide 'functions.el)
 ;;; functions.el ends here
