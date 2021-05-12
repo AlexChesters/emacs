@@ -9,6 +9,11 @@
   :config
   (aggressive-indent-mode))
 
+;; company
+(use-package company
+  :config
+  (global-company-mode))
+
 ;; drag-stuff
 (use-package drag-stuff
   :config
