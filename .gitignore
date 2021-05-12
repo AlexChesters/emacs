@@ -6,3 +6,6 @@ projectile-bookmarks.eld
 
 # transient dir
 transient/
+
+# helm stuff
+helm-adaptive-history
