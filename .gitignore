@@ -3,3 +3,6 @@ auto-save-list/
 
 # projectile bookmarks
 projectile-bookmarks.eld
+
+# transient dir
+transient/
