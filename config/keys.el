@@ -57,7 +57,7 @@
   (lambda ()
     (interactive)
     (delete-other-windows)
-    (kill-all-other-buffers)))
+    (kill-all-other-buffers))) ; Cmd+F, delete other windows and kill all other buffers
 
 (provide 'keys)
 ;;; keys.el ends here
