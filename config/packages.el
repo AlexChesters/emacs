@@ -120,6 +120,11 @@
 
 (add-hook 'typescript-mode-hook #'setup-tide)
 
+;; web-mode
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
+
 ;; yaml-mode
 (use-package yaml-mode
   :mode ("\\.ya?ml$" . yaml-mode))
