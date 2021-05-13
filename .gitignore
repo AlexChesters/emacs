@@ -12,3 +12,6 @@ helm-adaptive-history
 
 # tramp connection history
 tramp
+
+# elpy
+elpy/
