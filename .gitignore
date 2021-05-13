@@ -11,4 +11,4 @@ transient/
 helm-adaptive-history
 
 # tramp connection history
-tramp?
+tramp
