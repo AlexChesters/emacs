@@ -9,6 +9,13 @@
   :config
   (aggressive-indent-mode))
 
+;; column-enforce-mode
+(use-package column-enforce-mode
+  :config
+  (setq column-enforce-column 80)
+  (add-hook 'prog-mode-hook 'column-enforce-mode)
+  (add-hook 'markdown-mode-hook 'column-enforce-mode))
+
 ;; company
 (use-package company
   :config
