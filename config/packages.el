@@ -46,6 +46,9 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+;; git-timemachine
+(use-package git-timemachine)
+
 ;; helm
 (use-package helm
   :config

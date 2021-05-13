@@ -13,6 +13,9 @@
 ;; ibuffer
 (global-set-key (kbd "s-i") 'ibuffer) ; Cmd+i, ibuffer
 
+;; git-timemachine
+(global-set-key (kbd "s-g") 'git-timemachine) ; Cmd+g, open git-timemachine
+
 ;; helm
 (global-set-key (kbd "M-x") 'helm-M-x) ; Alt+x
 (global-set-key (kbd "s-S") 'helm-ag-project-root) ; Cmd+S
