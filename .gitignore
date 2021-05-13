@@ -9,3 +9,6 @@ transient/
 
 # helm stuff
 helm-adaptive-history
+
+# tramp connection history
+tramp?
