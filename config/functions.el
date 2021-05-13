@@ -11,6 +11,13 @@
     (comment-or-uncomment-region (region-beginning) (region-end))
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
+(defun kill-region-or-line ()
+  "Kill a selected region or line."
+  (interactive)
+  (if mark-active
+    (kill-region (region-beginning) (region-end))
+    (kill-whole-line)))
+
 (defun kill-all-buffers ()
   "Close all open buffers."
   (interactive)

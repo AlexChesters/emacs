@@ -41,7 +41,7 @@
 (define-key 'buffer-map (kbd "<return>") 'eval-buffer)
 
 ;; Editing
-(global-set-key (kbd "s-k") 'kill-whole-line) ; Cmd+k, Deleting the whole line
+(global-set-key (kbd "s-k") 'kill-region-or-line) ; Cmd+k, delete the selected region or line
 (global-set-key (kbd "s-/") 'comment-uncomment-region-or-line) ; Cmd+k, comment/uncomment the selected region or line
 
 ;; Navigation
