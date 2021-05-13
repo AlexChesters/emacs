@@ -44,7 +44,6 @@
 ;; flycheck
 (use-package flycheck
   :config
-  (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode)
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; helm
