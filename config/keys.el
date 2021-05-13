@@ -44,6 +44,8 @@
 ;; Editing
 (global-set-key (kbd "s-k") 'kill-region-or-line) ; Cmd+k, delete the selected region or line
 (global-set-key (kbd "s-/") 'comment-uncomment-region-or-line) ; Cmd+k, comment/uncomment the selected region or line
+(global-set-key (kbd "M-<up>") 'move-text-up)
+(global-set-key (kbd "M-<down>") 'move-text-down)
 
 ;; Navigation
 (global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer
