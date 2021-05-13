@@ -63,7 +63,7 @@
 (global-set-key (kbd "s-I")
   (lambda ()
     (interactive)
-    (find-file user-init-file))) ;; Cmd+I, opens the init.el file
+    (find-file "~/.emacs.d/"))) ;; Cmd+I, opens my .emacs.d directory
 
 (provide 'keys)
 ;;; keys.el ends here
