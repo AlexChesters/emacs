@@ -34,6 +34,7 @@
 (define-key 'vc-map (kbd "c") 'vc-next-action)
 
 ;; general keybinds
+(global-set-key (kbd "C-q") 'restart-emacs)
 
 ;; Buffer interaction
 (define-prefix-command 'buffer-map)
