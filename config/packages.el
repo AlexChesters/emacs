@@ -89,6 +89,11 @@
   (projectile-mode)
   (setq projectile-switch-project-action 'projectile-dired))
 
+;; rainbow-delemiters-mode
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
 ;; shell-pop
 (use-package shell-pop
   :config
