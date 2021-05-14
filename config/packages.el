@@ -71,8 +71,8 @@
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
+          ("\\.md\\'" . markdown-mode)
+          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
 ;; magit
@@ -133,6 +133,11 @@
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
+
+;; writeroom-mode
+(use-package writeroom-mode
+  :config
+  (add-hook 'markdown-mode-hook 'writeroom-mode))
 
 ;; yaml-mode
 (use-package yaml-mode
