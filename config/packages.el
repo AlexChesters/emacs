@@ -133,6 +133,10 @@
 
 (add-hook 'typescript-mode-hook #'setup-tide)
 
+;; vue-mode
+(use-package vue-mode)
+(set-face-background 'mmm-default-submode-face nil)
+
 ;; web-mode
 (use-package web-mode
   :config
