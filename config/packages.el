@@ -128,6 +128,7 @@
 ;; vue-mode
 (use-package vue-mode)
 (set-face-background 'mmm-default-submode-face nil)
+(setq js-indent-level 2)
 
 ;; web-mode
 (use-package web-mode
