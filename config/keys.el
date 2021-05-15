@@ -23,7 +23,8 @@
 
 ;; Projectile
 (global-set-key (kbd "M-<tab>") 'projectile-find-file) ; Alt+Tab, projectile-find-file
-(global-set-key (kbd "s-o") 'projectile-switch-project); Cmd+o, open new projectile project
+(global-set-key (kbd "s-o") 'projectile-switch-project) ; Cmd+o, open new projectile project
+(global-set-key (kbd "C-<tab>") 'projectile-dired) ; Cntl+Tab, open project dir
 
 ;; shell-pop
 (global-set-key (kbd "s-t") 'shell-pop); Cmd+t, open shell
