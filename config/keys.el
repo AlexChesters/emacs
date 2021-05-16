@@ -6,6 +6,9 @@
 
 ;; packages
 
+;; company-mode
+(global-set-key (kbd "<backtab>") 'company-complete)
+
 ;; Drag-stuff
 (global-set-key (kbd "s-<up>") 'drag-stuff-up)
 (global-set-key (kbd "s-<down>") 'drag-stuff-down)
