@@ -68,11 +68,10 @@
 (global-set-key (kbd "s-w") 'kill-buffer-and-window); Cmd+w, close buffer
 (global-set-key (kbd "s-W") 'kill-all-buffers) ; Cmd+w, close all buffers
 (global-set-key (kbd "s-R") 'open-remote-file) ; Cmd+r, open a remote file
-;; (global-set-key (kbd "s-F")
-;;   (lambda ()
-;;     (interactive)
-;;     (delete-other-windows)
-;;     (kill-all-other-buffers))) ; Cmd+F, delete other windows and kill all other buffers
+(global-set-key (kbd "s-F")
+  (lambda ()
+    (interactive)
+    (delete-other-windows))) ; Cmd+F, delete other windows
 (global-set-key (kbd "s-I")
   (lambda ()
     (interactive)
