@@ -32,6 +32,9 @@
 ;; shell-pop
 (global-set-key (kbd "s-t") 'shell-pop); Cmd+t, open shell
 
+;; tide
+(global-set-key (kbd "s-r") 'tide-rename-symbol)
+
 ;; VC things
 (define-prefix-command 'vc-map)
 (global-set-key (kbd "C-c v") 'vc-map)
@@ -64,7 +67,7 @@
 (global-set-key (kbd "s-f") 'helm-find-files) ; Cmd+f, find file
 (global-set-key (kbd "s-w") 'kill-buffer-and-window); Cmd+w, close buffer
 (global-set-key (kbd "s-W") 'kill-all-buffers) ; Cmd+w, close all buffers
-(global-set-key (kbd "s-r") 'open-remote-file) ; Cmd+r, open a remote file
+(global-set-key (kbd "s-R") 'open-remote-file) ; Cmd+r, open a remote file
 (global-set-key (kbd "s-F")
   (lambda ()
     (interactive)
