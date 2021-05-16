@@ -70,7 +70,11 @@
 (global-set-key (kbd "s-I")
   (lambda ()
     (interactive)
-    (find-file "~/.emacs.d/"))) ;; Cmd+I, opens my .emacs.d directory
+    (find-file "~/.emacs.d/"))) ; Cmd+I, opens my .emacs.d directory
+(global-set-key (kbd "s-d")
+  (lambda ()
+    (interactive)
+    (dired buffer-file-name))) ; Cmd+d, opens dired at the current directory
 
 (provide 'keys)
 ;;; keys.el ends here
