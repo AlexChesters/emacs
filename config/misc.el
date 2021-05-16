@@ -9,6 +9,7 @@
 (setq-default indent-tabs-mode nil) ; Use spaces over tabs
 (setq indent-line-function 'insert-tab)
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
+(setq-default typescript-indent-level 2) ; typescript indent level
 
 (delete-selection-mode 1) ; Deleting selected text if typed in/pasted
 (setq make-backup-files nil) ; Preventing backup (~) files
