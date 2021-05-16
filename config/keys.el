@@ -74,7 +74,7 @@
 (global-set-key (kbd "s-d")
   (lambda ()
     (interactive)
-    (dired buffer-file-name))) ; Cmd+d, opens dired at the current directory
+    (dired default-directory))) ; Cmd+d, opens dired at the current directory
 
 (provide 'keys)
 ;;; keys.el ends here
