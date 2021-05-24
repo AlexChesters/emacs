@@ -132,6 +132,11 @@
 
 (add-hook 'typescript-mode-hook #'setup-tide)
 
+;; treemacs
+(use-package treemacs
+  :config
+  (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
+
 ;; vue-mode
 (use-package vue-mode)
 (set-face-background 'mmm-default-submode-face nil)
