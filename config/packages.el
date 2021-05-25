@@ -136,7 +136,9 @@
 (use-package treemacs
   :config
   (treemacs)
-  (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
+  (define-key treemacs-mode-map [mouse-1] 'treemacs-single-click-expand-action)
+  (setq treemacs-show-hidden-files t)
+  (setq treemacs-width 50))
 
 ;; vue-mode
 (use-package vue-mode)
