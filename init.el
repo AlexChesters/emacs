@@ -17,11 +17,11 @@
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
 
 ;; Custom files
+(load-file "~/.emacs.d/config/appearance.el") ; Loading appearance configuration
 (load-file "~/.emacs.d/config/functions.el") ; Loading custom functions
 (load-file "~/.emacs.d/config/keys.el") ; Loading key-bindings
 (load-file "~/.emacs.d/config/misc.el") ; Loading miscellanous configuration
 (load-file "~/.emacs.d/config/packages.el") ; Loading packages
-(load-file "~/.emacs.d/config/appearance.el") ; Loading appearance configuration
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
