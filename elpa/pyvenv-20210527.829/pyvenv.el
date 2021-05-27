@@ -4,8 +4,8 @@
 
 ;; Author: Jorgen Schaefer <contact@jorgenschaefer.de>
 ;; URL: http://github.com/jorgenschaefer/pyvenv
-;; Package-Version: 20201227.1623
-;; Package-Commit: 9b3678bc29192d2dba64df90fbdb17393ef8d877
+;; Package-Version: 20210527.829
+;; Package-Commit: 045ff9476dac26086a04538d9b7ba186aa8f0fd1
 ;; Version: 1.21
 ;; Keywords: Python, Virtualenv, Tools
 
@@ -494,7 +494,6 @@ Both ENV-BEFORE and ENV-AFTER must be sorted alists of (STR . STR)."
         (when (equal (caar env-after) (caar env-before))
           (setq env-before (cdr env-before)))
         (setq env-after (cdr env-after)))))
-    (message "env-diff %S" env-diff)
     (nreverse env-diff)))
 
 
