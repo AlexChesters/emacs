@@ -9,8 +9,5 @@ etc
 ## [`elpa/`](elpa/)
 packages from [Melpa](https://melpa.org/) are stored here
 
-## [`games/`](games/)
-game high scores
-
 ## [`packages/`](packages/)
 packages that are not available from Melpa

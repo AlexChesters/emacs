@@ -18,4 +18,6 @@ elpy/
 
 # cache
 .cache/
-        
+
+# games
+games/
