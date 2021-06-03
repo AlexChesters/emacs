@@ -164,6 +164,11 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
 
+;; whitespace-cleanup-mode
+(use-package whitespace-cleanup-mode
+  :config
+  (whitespace-cleanup-mode))
+
 ;; writeroom-mode
 (use-package writeroom-mode
   :config
