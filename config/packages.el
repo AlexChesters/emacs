@@ -135,6 +135,10 @@
   :config
   (spaceline-spacemacs-theme))
 
+;; tabbar
+(use-package tabbar
+  :config (tabbar-mode))
+
 ;; tide
 (defun setup-tide ()
   "Function to set up tide mode."
