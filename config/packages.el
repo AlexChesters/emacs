@@ -111,7 +111,8 @@
 (use-package projectile
   :config
   (projectile-mode)
-  (setq projectile-switch-project-action 'projectile-dired))
+  (setq projectile-switch-project-action 'projectile-dired)
+  (setq projectile-indexing-method 'alien))
 
 ;; rainbow-delemiters-mode
 (use-package rainbow-delimiters
