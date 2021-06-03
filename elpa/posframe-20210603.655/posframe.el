@@ -5,8 +5,6 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Package-Version: 20210601.244
-;; Package-Commit: 1fb847ee06621c7329128524082e5743d360651d
 ;; Version: 1.0.3
 ;; Keywords: convenience, tooltip
 ;; Package-Requires: ((emacs "26"))
@@ -109,6 +107,12 @@ frame.")
 (defvar-local posframe--initialized-p nil
   "Record initialize status of `posframe-show'.")
 
+(defvar-local posframe--accept-focus nil
+  "Record accept focus status of `posframe-show'.")
+
+(defvar posframe-hidehandler-timer nil
+  "Timer used by hidehandler function.")
+
 ;; Avoid compilation warnings on Emacs < 27.
 (defvar x-gtk-resize-child-frames)
 
@@ -193,6 +197,7 @@ This posframe's buffer is BUFFER-OR-NAME."
       (setq-local cursor-type nil)
       (setq-local cursor-in-non-selected-windows nil)
       (setq-local show-trailing-whitespace nil)
+      (setq-local posframe--accept-focus accept-focus)
       (unless respect-mode-line
         (setq-local mode-line-format nil))
       (unless respect-header-line
@@ -333,7 +338,6 @@ POSHANDLER is a function of one argument returning an actual
 position.  Its argument is a plist of the following form:
 
   (:position xxx
-   :position-info xxx
    :poshandler xxx
    :font-height xxx
    :font-width xxx
@@ -481,8 +485,7 @@ be careful, you may face some bugs when set it to non-nil.
 (17) HIDEHANDLER
 
 HIDEHANDLER is a function, when it return t, posframe will be
-hide when `post-command-hook' is executed, this function has a
-plist argument:
+hide, this function has a plist argument:
 
   (:posframe-buffer xxx
    :posframe-parent-buffer xxx)
@@ -550,10 +553,6 @@ You can use `posframe-delete-all' to delete all posframes."
          (parent-window-left (window-pixel-left parent-window))
          (parent-window-width (window-pixel-width parent-window))
          (parent-window-height (window-pixel-height parent-window))
-         (position-info
-          (if (integerp position)
-              (posn-at-point position parent-window)
-            position))
          (parent-frame (window-frame parent-window))
          (parent-frame-width (frame-pixel-width parent-frame))
          (parent-frame-height (frame-pixel-height parent-frame))
@@ -622,7 +621,6 @@ You can use `posframe-delete-all' to delete all posframes."
         ;; All poshandlers will get info from this plist.
         `(,@poshandler-extra-info
           ,@(list :position position
-                  :position-info position-info
                   :poshandler poshandler
                   :font-height font-height
                   :font-width font-width
@@ -659,9 +657,6 @@ You can use `posframe-delete-all' to delete all posframes."
         (when (window-live-p window)
           (set-window-point window 0)))
 
-      ;; Force raise the current posframe.
-      (raise-frame posframe--frame)
-
       ;; Hide posframe when switch buffer
       (let* ((parent-buffer (window-buffer parent-window))
              (parent-buffer-name (buffer-name parent-buffer)))
@@ -695,7 +690,7 @@ posframe from catching keyboard input if the window manager selects it."
   (when (and (eq (selected-frame) posframe--frame)
              ;; Do not redirect focus when posframe can accept focus.
              ;; See posframe-show's accept-focus argument.
-             (frame-parameter (selected-frame) 'no-accept-focus))
+             (not posframe--accept-focus))
     (redirect-frame-focus posframe--frame (frame-parent))))
 
 (if (version< emacs-version "27.1")
@@ -717,8 +712,7 @@ https://github.com/tumashu/posframe/issues/4#issuecomment-357514918"
     (when (and x-y
                ;; Do not banish mouse when posframe can accept focus.
                ;; See posframe-show's accept-focus argument.
-               (frame-parameter posframe 'no-accept-focus)
-               (not (equal (cdr (mouse-position)) (cons (car x-y) (cdr x-y)))))
+               (not posframe--accept-focus))
       (set-mouse-position parent-frame (car x-y) (cdr x-y)))))
 
 (defun posframe--insert-string (string no-properties)
@@ -860,21 +854,29 @@ BUFFER-OR-NAME can be a buffer or a buffer name."
                   (equal buffer-or-name (cdr buffer-info)))
           (posframe--make-frame-invisible frame))))))
 
-(defun posframe-run-hidehandler ()
-  "Run posframe hidehandler. this function is used in `post-command-hook'."
-  (ignore-errors
-    (dolist (frame (frame-list))
-      (let ((hidehandler (frame-parameter frame 'posframe-hidehandler))
-            (buffer (frame-parameter frame 'posframe-buffer))
-            (parent-buffer (frame-parameter frame 'posframe-parent-buffer)))
-        (when (and hidehandler
-                   (funcall hidehandler
-                            (list
-                             :posframe-buffer buffer
-                             :posframe-parent-buffer parent-buffer)))
-          (posframe--make-frame-invisible frame))))))
+;; Remove in the future.
+(defun posframe-hidehandler-daemon ()
+  "Run posframe hidehandler."
+  (when posframe-hidehandler-timer
+    (cancel-timer posframe-hidehandler-timer))
+  (setq posframe-hidehandler-timer
+        (run-with-idle-timer
+         1 t
+         (lambda ()
+           (ignore-errors
+             (dolist (frame (frame-list))
+               (let ((hidehandler (frame-parameter frame 'posframe-hidehandler))
+                     (buffer (frame-parameter frame 'posframe-buffer))
+                     (parent-buffer (frame-parameter frame 'posframe-parent-buffer)))
+                 (when (and hidehandler
+                            (funcall hidehandler
+                                     (list
+                                      :posframe-buffer buffer
+                                      :posframe-parent-buffer parent-buffer)))
+                   (posframe--make-frame-invisible frame)))))))))
 
-(add-hook 'post-command-hook #'posframe-run-hidehandler)
+(posframe-hidehandler-daemon)
+(remove-hook 'post-command-hook #'posframe-run-hidehandler)
 
 (defun posframe-hidehandler-when-buffer-switch (info)
   "Posframe hidehandler function.
@@ -1023,10 +1025,6 @@ poshandler easily used for other purposes."
          (parent-window-left (window-pixel-left parent-window))
          (parent-window-width (window-pixel-width parent-window))
          (parent-window-height (window-pixel-height parent-window))
-         (position-info
-          (if (integerp position)
-              (posn-at-point position parent-window)
-            position))
          (font-width (default-font-width))
          (font-height (with-current-buffer (window-buffer parent-window)
                         (posframe--get-font-height position)))
@@ -1041,7 +1039,6 @@ poshandler easily used for other purposes."
             (ignore-errors
               (funcall refposhandler parent-frame)))))
     (list :position position
-          :position-info position-info
           :poshandler poshandler
           :font-height font-height
           :font-width font-width
@@ -1094,7 +1091,11 @@ Optional argument FONT-HEIGHT, UPWARD, CENTERING ."
          (window-width (plist-get info :parent-window-width))
          (xmax (plist-get info :parent-frame-width))
          (ymax (plist-get info :parent-frame-height))
-         (position-info (plist-get info :position-info))
+         (position (plist-get info :position))
+         (position-info
+          (if (integerp position)
+              (posn-at-point position window)
+            position))
          (header-line-height (plist-get info :header-line-height))
          (tab-line-height (plist-get info :tab-line-height))
          (x (+ (car (window-inside-pixel-edges window))
