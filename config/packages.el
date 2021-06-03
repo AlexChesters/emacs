@@ -91,6 +91,9 @@
   (add-hook 'js2-mode-hook #'add-node-modules-path)
   (js2-mode-hide-warnings-and-errors))
 
+;; json-mode
+(use-package json-mode)
+
 ;; markdown-mode
 (use-package markdown-mode
   :ensure t
