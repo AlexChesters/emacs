@@ -9,13 +9,17 @@
   :config
   (aggressive-indent-mode))
 
+;; all-the-icons
+(use-package all-the-icons)
+
 ;; centaur-tabs
 (use-package centaur-tabs
   :config
   (centaur-tabs-mode)
   (centaur-tabs-headline-match)
   (setq centaur-tabs-style "bar")
-  (setq centaur-tabs-gray-out-icons 'buffer))
+  (setq centaur-tabs-gray-out-icons 'buffer)
+  (setq centaur-tabs-set-icons t))
 
 ;; company
 (use-package company
@@ -161,6 +165,14 @@
   (define-key treemacs-mode-map [mouse-1] 'treemacs-single-click-expand-action)
   (setq treemacs-show-hidden-files t)
   (setq treemacs-width 50))
+
+;; treemacs-all-the-icons
+(use-package treemacs-all-the-icons)
+
+;; treemacs-dired
+(use-package treemacs-icons-dired
+  :config
+  (treemacs-icons-dired-mode))
 
 ;; vue-mode
 (use-package vue-mode)
