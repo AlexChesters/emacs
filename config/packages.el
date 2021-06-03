@@ -9,6 +9,14 @@
   :config
   (aggressive-indent-mode))
 
+;; centaur-tabs
+(use-package centaur-tabs
+  :config
+  (centaur-tabs-mode)
+  (centaur-tabs-headline-match)
+  (setq centaur-tabs-style "bar")
+  (setq centaur-tabs-gray-out-icons 'buffer))
+
 ;; company
 (use-package company
   :config
@@ -134,10 +142,6 @@
 (use-package spaceline
   :config
   (spaceline-spacemacs-theme))
-
-;; tabbar
-(use-package tabbar
-  :config (tabbar-mode))
 
 ;; tide
 (defun setup-tide ()
