@@ -155,11 +155,6 @@
   :config
   (spaceline-spacemacs-theme))
 
-;; spaceline-all-the-icons
-(use-package spaceline-all-the-icons
-  :after spaceline
-  :config (spaceline-all-the-icons-theme))
-
 ;; tide
 (defun setup-tide ()
   "Function to set up tide mode."
