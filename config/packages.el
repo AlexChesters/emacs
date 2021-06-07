@@ -173,7 +173,8 @@
   (define-key treemacs-mode-map [mouse-1] 'treemacs-single-click-expand-action)
   (setq treemacs-show-hidden-files t)
   (setq treemacs-width 50)
-  (setq treemacs-no-png-images t))
+  (setq treemacs-no-png-images t)
+  (setq treemacs-git-mode nil))
 
 ;; vue-mode
 (use-package vue-mode)
