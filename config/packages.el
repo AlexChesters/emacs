@@ -177,15 +177,8 @@
   (treemacs)
   (define-key treemacs-mode-map [mouse-1] 'treemacs-single-click-expand-action)
   (setq treemacs-show-hidden-files t)
-  (setq treemacs-width 50))
-
-;; treemacs-all-the-icons
-(use-package treemacs-all-the-icons)
-
-;; treemacs-dired
-(use-package treemacs-icons-dired
-  :config
-  (treemacs-icons-dired-mode))
+  (setq treemacs-width 50)
+  (setq treemacs-no-png-images t))
 
 ;; vue-mode
 (use-package vue-mode)
