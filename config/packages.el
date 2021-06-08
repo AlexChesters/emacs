@@ -12,15 +12,6 @@
 ;; all-the-icons
 (use-package all-the-icons)
 
-;; centaur-tabs
-(use-package centaur-tabs
-  :config
-  (centaur-tabs-mode)
-  (centaur-tabs-headline-match)
-  (setq centaur-tabs-style "bar")
-  (setq centaur-tabs-gray-out-icons 'buffer)
-  (setq centaur-tabs-set-icons t))
-
 ;; company
 (use-package company
   :config
