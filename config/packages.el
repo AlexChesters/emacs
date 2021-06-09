@@ -118,6 +118,11 @@
   :config
   (powerline-default-theme))
 
+;; prettier
+(use-package prettier
+  :config
+  (global-prettier-mode))
+
 ;; Projectile
 (use-package projectile
   :config
