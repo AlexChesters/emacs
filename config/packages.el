@@ -85,6 +85,7 @@
       (when (executable-find "eslint")
         (flycheck-select-checker 'javascript-eslint))))
   (add-hook 'js2-mode-hook #'add-node-modules-path)
+  (add-hook 'js2-mode-hook #'maybe-enable-prettier)
   (js2-mode-hide-warnings-and-errors))
 
 ;; json-mode
@@ -121,7 +122,7 @@
 ;; prettier
 (use-package prettier
   :config
-  (global-prettier-mode))
+  (add-hook 'prettier-mode-hook (setq flycheck-disabled-checkers '(javascript-eslint))))
 
 ;; Projectile
 (use-package projectile

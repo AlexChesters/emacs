@@ -31,6 +31,12 @@
     (delq (current-buffer)
       (buffer-list))))
 
+(defun maybe-enable-prettier ()
+  "Enables prettier-mode if a .prettierrc exists."
+  (if
+    (locate-dominating-file default-directory ".prettierrc")
+    (prettier-mode)))
+
 (defun open-remote-file ()
   "Open a file on a remote machine over SSH."
   (interactive)
