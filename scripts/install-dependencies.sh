@@ -1,6 +1,6 @@
 set -e
 
-# npm dependencies and the emacs packages that require them
+# emacs packages and the npm dependencies that require them
 # eglot: typescript typescript-language-server
 # prettier: prettier
 
