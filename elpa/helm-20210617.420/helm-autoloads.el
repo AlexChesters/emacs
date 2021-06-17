@@ -808,7 +808,7 @@ Browse URL with conkeror browser.
 
 \(fn URL &optional IGNORE)" t nil)
 
-(autoload 'helm-browse-url-next "helm-net" "\
+(autoload 'helm-browse-url-nyxt "helm-net" "\
 Browse URL with next browser.
 
 \(fn URL &optional IGNORE)" t nil)
