@@ -31,7 +31,7 @@ to perform almost all of their daily version control tasks directly from
 within Emacs.  While many fine Git clients exist, only Magit and Git
 itself deserve to be called porcelains.
 
-This manual is for Magit version 3.0.0.
+This manual is for Magit version 3.0.0 (v3.0.0-13-g3820ca58+1).
 
      Copyright (C) 2015-2021 Jonas Bernoulli <jonas@bernoul.li>
 
@@ -5169,7 +5169,7 @@ Also see *note (gitman)git-commit::.
      "instant" variants always require confirmation because making an
      error while using those is harder to recover from.
 
-   • User Option magit-post-commit-hook
+ -- User Option: magit-post-commit-hook
 
      Hook run after creating a commit without the user editing a
      message.
