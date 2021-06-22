@@ -15,7 +15,8 @@
 ;; company
 (use-package company
   :config
-  (global-company-mode))
+  (global-company-mode)
+  (add-hook 'markdown-mode-hook (company-mode -1)))
 
 ;; drag-stuff
 (use-package drag-stuff
