@@ -121,7 +121,9 @@
   (powerline-default-theme))
 
 ;; prettier
-(use-package prettier)
+(use-package prettier
+  :config
+  (add-hook 'prettier-mode-hook (setq flycheck-disabled-checkers '(javascript-eslint))))
 
 ;; Projectile
 (use-package projectile
