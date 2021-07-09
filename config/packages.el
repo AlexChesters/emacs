@@ -71,6 +71,9 @@
 ;; git-timemachine
 (use-package git-timemachine)
 
+;; gitignore-mode
+(use-package gitignore-mode)
+
 ;; helm
 (use-package helm
   :config
