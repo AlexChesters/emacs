@@ -12,6 +12,9 @@
 ;; all-the-icons
 (use-package all-the-icons)
 
+;; apache-mode
+(use-package apache-mode)
+
 ;; company
 (use-package company
   :config
