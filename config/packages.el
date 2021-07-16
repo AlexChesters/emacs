@@ -13,7 +13,13 @@
 (use-package all-the-icons)
 
 ;; apache-mode
-(use-package apache-mode)
+(use-package apache-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.conf\\'" . apache-mode))
+  (add-hook 'apache-mode-hook
+    (lambda ()
+      (message "apache!")
+      (setq tab-width 4))))
 
 ;; company
 (use-package company

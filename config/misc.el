@@ -5,7 +5,7 @@
 ;;; Code:
 
 ;; indent config
-(setq tab-width 2) ; Default tab-width
+(setq-default tab-width 2) ; Default tab-width
 (setq-default indent-tabs-mode nil) ; Use spaces over tabs
 (setq indent-line-function 'insert-tab)
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
