@@ -47,13 +47,6 @@
   :config
   (add-hook 'js2-mode-hook 'eglot-ensure))
 
-;; elpy
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable)
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
-
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :config
