@@ -381,6 +381,54 @@ Show a contextual right click menu based on click EVENT.
 
 ;;;***
 
+;;;### (autoloads nil "treemacs-project-follow-mode" "treemacs-project-follow-mode.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from treemacs-project-follow-mode.el
+
+(defvar treemacs-project-follow-mode nil "\
+Non-nil if Treemacs-Project-Follow mode is enabled.
+See the `treemacs-project-follow-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `treemacs-project-follow-mode'.")
+
+(custom-autoload 'treemacs-project-follow-mode "treemacs-project-follow-mode" nil)
+
+(autoload 'treemacs-project-follow-mode "treemacs-project-follow-mode" "\
+Toggle `treemacs-only-current-project-mode'.
+
+If called interactively, enable Treemacs-Project-Follow mode if
+ARG is positive, and disable it if ARG is zero or negative.  If
+called from Lisp, also enable the mode if ARG is omitted or nil,
+and toggle it if ARG is `toggle'; disable the mode otherwise.
+
+This is a minor mode meant for those who do not care about treemacs' workspace
+features, or its preference to work with multiple projects simultaneously.  When
+enabled it will function as an automated version of
+`treemacs-display-current-project-exclusively', making sure that, after a small
+idle delay, the current project, and *only* the current project, is displayed in
+treemacs.
+
+The project detection is based on the current buffer, and will try to determine
+the project using the following methods, in the order they are listed:
+
+- the current projectile.el project, if `treemacs-projectile' is installed
+- the current project.el project
+- the current `default-directory'
+
+The update will only happen when treemacs is in the foreground, meaning a
+treemacs window must exist in the current scope.
+
+This mode requires at least Emacs version 27 since it relies on
+`window-buffer-change-functions' and `window-selection-change-functions'.
+
+\(fn &optional ARG)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "treemacs-project-follow-mode" '("treemacs--")))
+
+;;;***
+
 ;;;### (autoloads nil "treemacs-rendering" "treemacs-rendering.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from treemacs-rendering.el

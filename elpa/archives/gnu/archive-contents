@@ -18,7 +18,7 @@
 	 ("Leo Liu" . "sdl.web@gmail.com"))
 	(:keywords "tools" "processes" "convenience"))])
  (ada-mode .
-	   [(7 1 6)
+	   [(7 1 7)
 	    ((uniquify-files
 	      (1 0 1))
 	     (wisi
@@ -646,11 +646,9 @@
 	       ("Leo Liu" . "sdl.web@gmail.com"))
 	      (:keywords "killing" "convenience"))])
  (ebdb .
-       [(0 7)
+       [(0 7 1)
 	((emacs
 	  (25 1))
-	 (cl-lib
-	  (0 5))
 	 (seq
 	  (2 15)))
 	"Contact management package" tar
@@ -1291,11 +1289,13 @@
 	   ("Ivan Kanis" . "ivan@kanis.fr"))
 	  (:maintainer "Ivan Kanis" . "ivan@kanis.fr"))])
  (kiwix .
-	[(1 0 3)
+	[(1 1 0)
 	 ((emacs
 	   (24 4))
 	  (request
-	   (0 3 0)))
+	   (0 3 0))
+	  (elquery
+	   (0 1 0)))
 	 "Searching offline Wikipedia through Kiwix." tar
 	 ((:url . "https://github.com/stardiviner/kiwix.el")
 	  (:maintainer "stardiviner" . "numbchild@gmail.com")
@@ -1794,7 +1794,7 @@
 	     ("Phillip Lord" . "phillip.lord@russet.org.uk"))
 	    (:url . "http://elpa.gnu.org/packages/persist.html"))])
  (phps-mode .
-	    [(0 4 4)
+	    [(0 4 6)
 	     ((emacs
 	       (26)))
 	     "Major mode for PHP with Semantic integration" tar
@@ -2255,15 +2255,15 @@
 	      ("	(Stefan Monnier)" . "monnier@iro.umontreal.ca"))
 	     (:maintainer "Stefan Monnier" . "monnier@iro.umontreal.ca"))])
  (so-long .
-	  [(1 0)
+	  [(1 1 1)
 	   ((emacs
 	     (24 4)))
-	   "Say farewell to performance problems with minified code." single
-	   ((:keywords "convenience")
+	   "Say farewell to performance problems with minified code." tar
+	   ((:url . "https://savannah.nongnu.org/projects/so-long")
+	    (:maintainer "Phil Sainty" . "psainty@orcon.net.nz")
 	    (:authors
 	     ("Phil Sainty" . "psainty@orcon.net.nz"))
-	    (:maintainer "Phil Sainty" . "psainty@orcon.net.nz")
-	    (:url . "https://savannah.nongnu.org/projects/so-long"))])
+	    (:keywords "convenience"))])
  (soap-client .
 	      [(3 2 0)
 	       ((cl-lib
