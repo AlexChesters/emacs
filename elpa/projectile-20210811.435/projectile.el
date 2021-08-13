@@ -1,13 +1,13 @@
 ;;; projectile.el --- Manage and navigate projects in Emacs easily -*- lexical-binding: t -*-
 
-;; Copyright © 2011-2021 Bozhidar Batsov <bozhidar@batsov.com>
+;; Copyright © 2011-2021 Bozhidar Batsov <bozhidar@batsov.dev>
 
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
+;; Author: Bozhidar Batsov <bozhidar@batsov.dev>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20210809.924
-;; Package-Commit: d33394c7b158cc300748111e838d655aaf302ebc
+;; Package-Version: 20210811.435
+;; Package-Commit: 87f6078e3ef4ea47d839006bfe1ed9c96b56aa6f
 ;; Keywords: project, convenience
-;; Version: 2.5.0-snapshot
+;; Version: 2.5.0
 ;; Package-Requires: ((emacs "25.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -76,7 +76,6 @@
 
 (declare-function ggtags-ensure-project "ext:ggtags")
 (declare-function ggtags-update-tags "ext:ggtags")
-(declare-function pkg-info-version-info "ext:pkg-info")
 (declare-function ripgrep-regexp "ext:ripgrep")
 (declare-function vterm "ext:vterm")
 (declare-function vterm-send-return "ext:vterm")
@@ -639,7 +638,8 @@ Examples of such paths might be ~/projects, ~/work, (~/github . 1) etc.
 
 For elements of form (DIRECTORY . DEPTH), DIRECTORY has to be a
 directory and DEPTH an integer that specifies the depth at which to
-look for projects."
+look for projects. A DEPTH of 0 means check DIRECTORY. A depth of 1
+means check all the subdirectories of DIRECTORY. Etc."
   :group 'projectile
   :type '(repeat (choice directory (cons directory (integer :tag "Depth"))))
   :package-version '(projectile . "1.0.0"))
@@ -1033,15 +1033,14 @@ The cache is created both in memory and on the hard drive."
 
 If DEPTH is non-nil recursively descend exactly DEPTH levels below DIRECTORY and
 discover projects there."
-  (if (file-exists-p directory)
-      (let ((subdirs (directory-files directory t)))
-        (dolist (dir subdirs)
-          (when (and (file-directory-p dir)
-                     (not (member (file-name-nondirectory dir) '(".." "."))))
-            (if (and (numberp depth) (> depth 0))
-	        (projectile-discover-projects-in-directory dir (1- depth))
-              (when (projectile-project-p dir)
-	        (projectile-add-known-project dir))))))
+  (if (file-directory-p directory)
+      (if (and (numberp depth) (> depth 0))
+          (dolist (dir (directory-files directory t))
+            (when (and (file-directory-p dir)
+                       (not (member (file-name-nondirectory dir) '(".." "."))))
+	            (projectile-discover-projects-in-directory dir (1- depth))))
+        (when (projectile-project-p directory)
+          (projectile-add-known-project directory)))
     (message "Project search path directory %s doesn't exist" directory)))
 
 ;;;###autoload
@@ -1052,7 +1051,7 @@ Invoked automatically when `projectile-mode' is enabled."
   (dolist (path projectile-project-search-path)
     (if (consp path)
 	(projectile-discover-projects-in-directory (car path) (cdr path))
-      (projectile-discover-projects-in-directory path 0))))
+      (projectile-discover-projects-in-directory path 1))))
 
 
 (defun delete-file-projectile-remove-from-cache (filename &optional _trash)
@@ -4742,24 +4741,18 @@ If the prefix argument SHOW_PROMPT is non nil, the command can be edited."
       (ring-insert command-history executed-command))))
 
 (defun compilation-find-file-projectile-find-compilation-buffer (orig-fun marker filename directory &rest formats)
-  "Try to find a buffer for FILENAME, if we cannot find it,
-fallback to the original function."
-  (when (and (not (file-exists-p (expand-file-name filename)))
-             (projectile-project-p))
-    (let* ((root (projectile-project-root))
-           (dirs (cons "" (projectile-current-project-dirs)))
-           (new-filename (car (cl-remove-if-not
-                               #'file-exists-p
-                               (mapcar
-                                (lambda (f)
-                                  (expand-file-name
-                                   filename
-                                   (expand-file-name f root)))
-                                dirs)))))
-      (when new-filename
-        (setq filename new-filename))))
-
-  (apply orig-fun `(,marker ,filename ,directory ,@formats)))
+  "Advice around compilation-find-file. We enhance its functionality by
+appending the current project's directories to its search path. This way
+when filenames in compilation buffers can't be found by compilation's
+normal logic they are searched for in project directories."
+  (let* ((root (projectile-project-root))
+         (compilation-search-path
+          (if (projectile-project-p)
+              (append compilation-search-path (list root)
+                      (mapcar (lambda (f) (expand-file-name f root))
+                              (projectile-current-project-dirs)))
+            compilation-search-path)))
+    (apply orig-fun `(,marker ,filename ,directory ,@formats))))
 
 (defun projectile-open-projects ()
   "Return a list of all open projects.

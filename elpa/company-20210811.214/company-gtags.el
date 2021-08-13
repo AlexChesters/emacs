@@ -63,6 +63,11 @@ completion."
             (locate-dominating-file buffer-file-name "GTAGS"))
     company-gtags--tags-available-p))
 
+;; Avoid byte-compilation warnings on Emacs < 27.
+(declare-function with-connection-local-variables "files-x")
+(declare-function connection-local-set-profile-variables "files-x")
+(declare-function connection-local-set-profiles "files-x")
+
 (defun company-gtags--executable ()
   (cond
    ((not (eq company-gtags--executable 'unknown)) ;; the value is already cached
