@@ -10,6 +10,9 @@
 (setq indent-line-function 'insert-tab)
 (setq lisp-indent-offset 2) ; Setting the indent level for lisp
 (setq-default typescript-indent-level 2) ; typescript indent level
+(add-hook 'text-mode-hook
+  (lambda ()
+    (setq tab-width 0))) ; ensuring text-mode's (e.g. magit commit messages) don't indent
 
 (delete-selection-mode 1) ; Deleting selected text if typed in/pasted
 (setq make-backup-files nil) ; Preventing backup (~) files
