@@ -21,5 +21,7 @@
 (show-paren-mode 1) ; Always show matching parenthesis
 (delete-selection-mode 1) ; Deleting selected text if typed in/pasted
 
+(add-hook 'before-save-hook 'whitespace-cleanup) ; clean whitespace on every save
+
 (provide 'misc.el)
 ;;; misc.el ends here
