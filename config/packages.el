@@ -37,6 +37,9 @@
   :config
   (global-diff-hl-mode))
 
+;; dockerfile-mode
+(use-package dockerfile-mode)
+
 ;; dtrt-indent
 (add-to-list 'load-path "~/.emacs.d/packages/dtrt-indent/")
 (require 'dtrt-indent)
