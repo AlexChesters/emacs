@@ -2103,6 +2103,14 @@ are staged changes, apply without preserving the stash index.
 
 \(fn STASH)" t nil)
 
+(autoload 'magit-stash-pop "magit-stash" "\
+Apply a stash to the working tree and remove it from stash list.
+Try to preserve the stash index.  If that fails because there
+are staged changes, apply without preserving the stash index
+and forgo removing the stash.
+
+\(fn STASH)" t nil)
+
 (autoload 'magit-stash-drop "magit-stash" "\
 Remove a stash from the stash list.
 When the region is active offer to drop all contained stashes.
