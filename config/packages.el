@@ -88,11 +88,7 @@
 (use-package js2-mode
   :mode ("\\.js$" . js2-mode)
   :config
-  (add-hook 'js2-mode-hook
-    (defun my-js2-mode-setup ()
-      (flycheck-mode t)
-      (when (executable-find "eslint")
-        (flycheck-select-checker 'javascript-eslint))))
+  (add-hook 'js2-mode-hook #'select-flycheck-eslint-if-eslint-exists-locally)
   (add-hook 'js2-mode-hook #'add-node-modules-path)
   (add-hook 'js2-mode-hook #'maybe-enable-prettier)
   (js2-mode-hide-warnings-and-errors))
@@ -171,6 +167,8 @@
   (setq tide-completion-ignore-case t))
 
 (add-hook 'typescript-mode-hook #'setup-tide)
+(add-hook 'typescript-mode-hook #'select-flycheck-eslint-if-eslint-exists-locally)
+(add-hook 'typescript-mode-hook #'add-node-modules-path)
 
 ;; treemacs
 (use-package treemacs

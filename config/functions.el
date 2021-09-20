@@ -46,5 +46,11 @@
       (hostname (read-string "Hostname: ")))
     (find-file (concat "/ssh:" user "@" hostname ":/"))))
 
+(defun select-flycheck-eslint-if-eslint-exists-locally ()
+  "Select the flycheck eslint checker if a local eslint executable exists in project."
+  (flycheck-mode t)
+  (when (executable-find "eslint")
+    (flycheck-select-checker 'javascript-eslint)))
+
 (provide 'functions.el)
 ;;; functions.el ends here
