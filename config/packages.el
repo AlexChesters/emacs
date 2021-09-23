@@ -27,6 +27,9 @@
   (global-company-mode)
   (add-hook 'markdown-mode-hook (company-mode -1)))
 
+;; csv-mode
+(use-package csv-mode)
+
 ;; drag-stuff
 (use-package drag-stuff
   :config
