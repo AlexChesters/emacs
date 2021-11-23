@@ -170,7 +170,7 @@
   (setq tide-completion-ignore-case t))
 
 (add-hook 'typescript-mode-hook #'setup-tide)
-(add-hook 'typescript-mode-hook #'select-flycheck-eslint-if-eslint-exists-locally)
+;; (add-hook 'typescript-mode-hook #'select-flycheck-eslint-if-eslint-exists-locally)
 (add-hook 'typescript-mode-hook #'add-node-modules-path)
 
 ;; treemacs
