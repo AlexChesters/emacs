@@ -140,19 +140,29 @@
   "Face used for the selected quick-access hints shown in the tooltip."
   :package-version '(company . "0.9.14"))
 
-(defface company-scrollbar-fg
+(define-obsolete-face-alias
+ 'company-scrollbar-fg
+ 'company-tooltip-scrollbar-thumb
+ "0.9.14")
+
+(defface company-tooltip-scrollbar-thumb
   '((((background light))
      :background "darkred")
     (((background dark))
      :background "gray33"))
-  "Face used for the tooltip scrollbar thumb.")
+  "Face used for the tooltip scrollbar thumb (bar).")
 
-(defface company-scrollbar-bg
+(define-obsolete-face-alias
+ 'company-scrollbar-bg
+ 'company-tooltip-scrollbar-track
+ "0.9.14")
+
+(defface company-tooltip-scrollbar-track
   '((((background light))
      :background "wheat")
     (((background dark))
      :background "gray28"))
-  "Face used for the tooltip scrollbar background.")
+  "Face used for the tooltip scrollbar track (trough).")
 
 (defface company-preview
   '((default :inherit (company-tooltip-selection company-tooltip)))
@@ -1659,14 +1669,15 @@ The only mandatory element in CONF is ICON, you can omit both the FG and BG
 fields without issue.
 
 When BG is omitted and `company-text-icons-add-background' is non-nil, a BG
-color will be generated using a gradient between the active tooltip color and
+color is generated using a gradient between the active tooltip color and
 the FG color."
   :type 'list)
 
 (defcustom company-text-face-extra-attributes '(:weight bold)
-  "Additional attributes to add to text icons' faces.
-If non-nil, an anonymous face will be generated.
-Only affects `company-text-icons-margin'."
+  "Additional attributes to add to text/dot icons faces.
+If non-nil, an anonymous face is generated.
+
+Affects `company-text-icons-margin' and `company-dot-icons-margin'."
   :type 'list)
 
 (defcustom company-text-icons-format " %s "
@@ -1674,7 +1685,7 @@ Only affects `company-text-icons-margin'."
   :type 'string)
 
 (defcustom company-text-icons-add-background nil
-  "When non-nil, generate a background color for text icons when none is given.
+  "Generate a background color for text/dot icons when none is given.
 See `company-text-icons-mapping'."
   :type 'boolean)
 
@@ -3383,8 +3394,8 @@ but adjust the expected values appropriately."
 (defun company--scrollbar (i bounds)
   (propertize " " 'face
               (if (and (>= i (car bounds)) (<= i (cdr bounds)))
-                  'company-scrollbar-fg
-                'company-scrollbar-bg)))
+                  'company-tooltip-scrollbar-thumb
+                'company-tooltip-scrollbar-track)))
 
 (defun company--scrollpos-line (text width fancy-margin-width)
   (propertize (concat (company-space-string company-tooltip-margin)

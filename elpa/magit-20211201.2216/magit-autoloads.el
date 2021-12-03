@@ -1131,16 +1131,7 @@ removed on the respective remote." t nil)
 
 (autoload 'magit-fetch-all-no-prune "magit-fetch" "\
 Fetch from all remotes." t nil)
-
-(autoload 'magit-fetch-modules "magit-fetch" "\
-Fetch all submodules.
-
-Option `magit-fetch-modules-jobs' controls how many submodules
-are being fetched in parallel.  Also fetch the super-repository,
-because `git-fetch' does not support not doing that.  With a
-prefix argument fetch all remotes.
-
-\(fn &optional ALL)" t nil)
+ (autoload 'magit-fetch-modules "magit-fetch" nil t)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-fetch" '("magit-")))
 
