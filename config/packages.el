@@ -144,6 +144,11 @@
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+;; rust-mode
+(use-package rust-mode
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 ;; shell-pop
 (use-package shell-pop
   :config
