@@ -865,7 +865,7 @@
 		   (:authors
 		    ("Omar Antolín Camarena" . "omar@matem.unam.mx")))])
  (emms .
-       [(7 8)
+       [(8)
 	((cl-lib
 	  (0 5))
 	 (nadvice
@@ -2888,7 +2888,7 @@
 	    (:authors
 	     ("Daniel Mendler" . "mail@daniel-mendler.de")))])
  (vertico-posframe .
-		   [(0 4 5)
+		   [(0 4 7)
 		    ((emacs
 		      (26 0))
 		     (posframe
