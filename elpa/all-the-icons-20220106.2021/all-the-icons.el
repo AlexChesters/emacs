@@ -266,6 +266,7 @@
     ("js"           all-the-icons-alltheicon "javascript"     :height 1.0 :v-adjust 0.0 :face all-the-icons-yellow)
     ("es"           all-the-icons-alltheicon "javascript"     :height 1.0 :v-adjust 0.0 :face all-the-icons-yellow)
     ("jsx"          all-the-icons-fileicon "jsx-2"            :height 1.0 :v-adjust -0.1 :face all-the-icons-cyan-alt)
+    ("tsx"          all-the-icons-fileicon "tsx"              :height 1.0 :v-adjust -0.1 :face all-the-icons-cyan-alt)
     ("njs"          all-the-icons-alltheicon "nodejs"         :height 1.2  :face all-the-icons-lgreen)
     ("vue"          all-the-icons-fileicon "vue"              :face all-the-icons-lgreen)
 
@@ -423,8 +424,8 @@ for performance sake.")
 
     ;; Config
     ("^bower.json$"     all-the-icons-alltheicon "bower"                :height 1.0 :v-adjust 0.0 :face all-the-icons-lorange)
-    ("nginx"            all-the-icons-fileicon "nginx"                  :height 0.9  :face all-the-icons-dgreen)
-    ("apache"           all-the-icons-alltheicon "apache"               :height 0.9  :face all-the-icons-dgreen)
+    ("nginx$"            all-the-icons-fileicon "nginx"                  :height 0.9  :face all-the-icons-dgreen)
+    ("apache$"           all-the-icons-alltheicon "apache"               :height 0.9  :face all-the-icons-dgreen)
     ("^Makefile$"       all-the-icons-fileicon "gnu"                    :face all-the-icons-dorange)
     ("^CMakeLists.txt$" all-the-icons-fileicon "cmake"                  :face all-the-icons-red)
     ("^CMakeCache.txt$" all-the-icons-fileicon "cmake"                  :face all-the-icons-blue)
@@ -479,7 +480,10 @@ for performance sake.")
     ("^\\*new-tab\\*$"  all-the-icons-material "star"                     :face all-the-icons-cyan)
 
     ("^\\."             all-the-icons-octicon "gear"                    :v-adjust 0.0)
-    (".?"               all-the-icons-faicon "file-o"                   :v-adjust 0.0 :face all-the-icons-dsilver)))
+    ))
+
+(defvar all-the-icons-default-file-icon
+  '(all-the-icons-faicon "file-o" :v-adjust 0.0 :face all-the-icons-dsilver))
 
 (defvar all-the-icons-dir-icon-alist
   '(
@@ -548,6 +552,7 @@ for performance sake.")
     (slime-repl-mode           all-the-icons-fileicon "clisp"               :v-adjust -0.1 :face all-the-icons-orange)
     (org-mode                  all-the-icons-fileicon "org"                :v-adjust 0.0 :face all-the-icons-lgreen)
     (typescript-mode           all-the-icons-fileicon "typescript"         :v-adjust -0.1 :face all-the-icons-blue-alt)
+    (typescript-tsx-mode       all-the-icons-fileicon "tsx"                :v-adjust -0.1 :face all-the-icons-cyan-alt)
     (js-mode                   all-the-icons-alltheicon "javascript"       :v-adjust -0.1 :face all-the-icons-yellow)
     (js-jsx-mode               all-the-icons-alltheicon "javascript"       :v-adjust -0.1 :face all-the-icons-yellow)
     (js2-mode                  all-the-icons-alltheicon "javascript"       :v-adjust -0.1 :face all-the-icons-yellow)
@@ -873,6 +878,8 @@ Note: You want chevron, please use `all-the-icons-icon-for-dir-with-chevron'."
          (args (cdr icon)))
     (when arg-overrides (setq args (append `(,(car args)) arg-overrides (cdr args))))
     (cond
+     ((file-remote-p path)
+      (apply #'all-the-icons-octicon "terminal" (cdr args)))
      ((file-symlink-p path)
       (apply #'all-the-icons-octicon "file-symlink-directory" (cdr args)))
      ((all-the-icons-dir-is-submodule path)
@@ -888,10 +895,11 @@ ARG-OVERRIDES should be a plist containining `:height',
 `:v-adjust' or `:face' properties like in the normal icon
 inserting functions."
   (let* ((ext (file-name-extension file))
-         (icon (or (and ext
+         (icon (or (all-the-icons-match-to-alist file all-the-icons-regexp-icon-alist)
+                   (and ext
                         (cdr (assoc (downcase ext)
                                     all-the-icons-extension-icon-alist)))
-                   (all-the-icons-match-to-alist file all-the-icons-regexp-icon-alist)))
+                   all-the-icons-default-file-icon))
          (args (cdr icon)))
     (when arg-overrides (setq args (append `(,(car args)) arg-overrides (cdr args))))
     (apply (car icon) args)))
