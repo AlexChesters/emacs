@@ -58,6 +58,8 @@
 (global-set-key (kbd "M-<down>") 'move-text-down)
 
 ;; Navigation
+(global-set-key [mouse-4] 'move-beginning-of-line)
+(global-set-key [mouse-3] 'move-end-of-line)
 (global-set-key (kbd "M-s-<left>") 'windmove-left) ; Cmd+alt+left, Move left buffer
 (global-set-key (kbd "M-s-<right>") 'windmove-right) ; Cmd+alt+right, Move right buffer
 (global-set-key (kbd "M-s-<up>") 'windmove-up) ; Cmd+alt+up, Move up buffer
