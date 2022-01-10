@@ -5,7 +5,7 @@
 ;; Author: Feng Shu <tumashu@163.com>
 ;; Maintainer: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/posframe
-;; Version: 1.1.3
+;; Version: 1.1.6
 ;; Keywords: convenience, tooltip
 ;; Package-Requires: ((emacs "26.1"))
 
@@ -163,7 +163,8 @@ ACCEPT-FOCUS."
         (buffer (get-buffer-create buffer-or-name))
         (after-make-frame-functions nil)
         (x-gtk-resize-child-frames posframe-gtk-resize-child-frames)
-        (args (list foreground-color
+        (args (list "args"
+                    foreground-color
                     background-color
                     right-fringe
                     left-fringe
@@ -200,15 +201,17 @@ ACCEPT-FOCUS."
       (unless respect-header-line
         (setq-local header-line-format nil))
 
-      (add-hook 'kill-buffer-hook #'posframe-auto-delete nil t)
+      ;; Find existing posframe: buffer-local variables used by
+      ;; posframe can be cleaned by other packages, so we should find
+      ;; existing posframe first if possible.
+      (unless (or posframe--frame posframe--last-args)
+        (setq-local posframe--frame
+                    (posframe--find-existing-posframe buffer args))
+        (setq-local posframe--last-args args))
 
       ;; Create child-frame
-      (unless (and (frame-live-p (or posframe--frame
-                                     ;; Sometimes, the buffer of posframe will be
-                                     ;; recreated by other packages,
-                                     ;; so we should reuse exist
-                                     ;; posframe as far as possible.
-                                     (posframe--find-existing-posframe buffer-or-name)))
+      (unless (and posframe--frame
+                   (frame-live-p posframe--frame)
                    ;; For speed reason, posframe will reuse
                    ;; existing frame at possible, but when
                    ;; user change args, recreating frame
@@ -260,6 +263,7 @@ ACCEPT-FOCUS."
                        (inhibit-double-buffering . ,posframe-inhibit-double-buffering)
                        ;; Do not save child-frame when use desktop.el
                        (desktop-dont-save . t))))
+        (set-frame-parameter posframe--frame 'last-args args)
         (when border-color
 	  (set-face-background
            (if (facep 'child-frame-border)
@@ -279,10 +283,16 @@ ACCEPT-FOCUS."
           (unless respect-header-line
             (set-window-parameter posframe-window 'header-line-format 'none))
           (set-window-buffer posframe-window buffer)
+          ;; When the buffer of posframe is killed, the child-frame of
+          ;; this posframe will be deleted too.
           (set-window-dedicated-p posframe-window t)))
 
       ;; Remove tab-bar always.
-      (set-frame-parameter posframe--frame 'tab-bar-lines 0)
+      ;; NOTE: if we do not test the value of frame parameter
+      ;; 'tab-bar-lines before set it, posframe will flicker when
+      ;; scroll.
+      (unless (equal (frame-parameter posframe--frame 'tab-bar-lines) 0)
+        (set-frame-parameter posframe--frame 'tab-bar-lines 0))
       (when (version< "27.0" emacs-version)
         (setq-local tab-line-format nil))
 
@@ -969,8 +979,6 @@ BUFFER-OR-NAME can be a buffer or a buffer name."
           (posframe--make-frame-invisible frame))))))
 
 (posframe-hidehandler-daemon)
-;; For compatibility, remove In the future.
-(remove-hook 'post-command-hook 'posframe-run-hidehandler)
 
 (defun posframe-hidehandler-when-buffer-switch (info)
   "Posframe hidehandler function.
@@ -1010,13 +1018,18 @@ BUFFER-OR-NAME can be a buffer or a buffer name."
               (cancel-timer timer)))))
       (delete-frame posframe))))
 
-(defun posframe--find-existing-posframe (buffer-or-name)
-  "Find existing posframe of BUFFER-OR-NAME."
+(defun posframe--find-existing-posframe (buffer &optional last-args)
+  "Find existing posframe with BUFFER and LAST-ARGS."
   (cl-find-if
    (lambda (frame)
-     (let ((buffer-info (frame-parameter frame 'posframe-buffer)))
-       (or (equal buffer-or-name (car buffer-info))
-           (equal buffer-or-name (cdr buffer-info)))))
+     (let* ((buffer-info (frame-parameter frame 'posframe-buffer))
+            (buffer-equal-p
+             (or (equal (buffer-name buffer) (car buffer-info))
+                 (equal buffer (cdr buffer-info)))))
+       (if last-args
+           (and buffer-equal-p
+                (equal last-args (frame-parameter frame 'last-args)))
+         buffer-equal-p)))
    (frame-list)))
 
 (defun posframe--kill-buffer (buffer-or-name)
@@ -1055,12 +1068,6 @@ BUFFER-OR-NAME can be a buffer or a buffer name."
     (with-current-buffer buffer
       (when posframe--frame
         (posframe--kill-buffer buffer)))))
-
-(defun posframe-auto-delete ()
-  "Auto delete posframe when its buffer is killed.
-
-This function is used by `kill-buffer-hook'."
-  (posframe-delete-frame (current-buffer)))
 
 ;; Posframe's position handler
 (defun posframe-run-poshandler (info)

@@ -1,8 +1,7 @@
 This is company.info, produced by makeinfo version 6.7 from
 company.texi.
 
-This user manual is for Company version 0.9.14snapshot
-(28 December 2021).
+This user manual is for Company version 0.9.14snapshot (8 January 2022).
 
 Copyright © 2021 Free Software Foundation, Inc.
 
@@ -27,8 +26,7 @@ The goal of this document is to lay out the foundational knowledge of
 the package, so that the readers of the manual could competently start
 adapting Company to their needs and preferences.
 
-This user manual is for Company version 0.9.14snapshot
-(28 December 2021).
+This user manual is for Company version 0.9.14snapshot (8 January 2022).
 
 Copyright © 2021 Free Software Foundation, Inc.
 
@@ -406,23 +404,24 @@ core settings that influence the overall behavior of the _company-mode_.
      enabled _company-mode_ in the mode line.  The default value is
      ‘company’.
 
- -- User Option: company-auto-commit
+ -- User Option: company-insertion-on-trigger
      One more pair of the user options may instruct Company to complete
      with the selected candidate by typing one of the
-     ‘company-auto-commit-chars’ (1).  The user option
-     ‘company-auto-commit’ can be enabled or disabled by setting its
-     value to one of: ‘nil’, ‘t’, or a predicate function name.  *note
-     Predicate: (eintr)Wrong Type of Argument.
+     ‘company-insertion-triggers’.  The user option
+     ‘company-insertion-on-trigger’ can be enabled or disabled by
+     setting its value to one of: ‘nil’, ‘t’, or a predicate function
+     name.  *note Predicate: (eintr)Wrong Type of Argument.
 
- -- User Option: company-auto-commit-chars
-     This option acts only when ‘company-auto-commit’ is enabled.  The
-     value can be one of: a string of characters, a list of syntax
-     description characters (*note (elisp)Syntax Class Table::), or a
-     predicate function.  By default, ‘company-auto-commit-chars’ is set
-     to the list of the syntax characters: ‘(?\ ?\) ?.)’, which
+ -- User Option: company-insertion-triggers
+     This option has an effect only when ‘company-insertion-on-trigger’
+     is enabled.  The value can be one of: a string of characters, a
+     list of syntax description characters (*note (elisp)Syntax Class
+     Table::), or a predicate function.  By default, this user option is
+     set to the list of the syntax characters: ‘(?\ ?\) ?.)’, which
      translates to the whitespaces, close parenthesis, and punctuation.
-     The particular convenience of this user option values is they do
-     not act as triggers when they are part of valid completion.
+     It is safe to configure the value to a character that can
+     potentially be part of a valid completion; in this case, Company
+     does not treat such characters as triggers.
 
 Hooks
 -----
@@ -436,17 +435,6 @@ Company exposes the following life-cycle hooks:
  -- User Option: company-completion-finished-hook
 
  -- User Option: company-after-completion-hook
-
-   ---------- Footnotes ----------
-
-   (1) The options ‘company-auto-commit’ and ‘company-auto-commit-chars’
-used to be called ‘company-auto-complete’ and
-‘company-auto-complete-chars’ respectively, which was in more accordance
-with the terminology given in this manual.  But the resulting
-combination of the words ‘auto-complete’ present in those names made it
-seem the role of these user options was to configure Company’s
-auto-start behavior.  Hence, it was chosen to rename the options to,
-hopefully, less confusing names.
 
 
 File: company.info,  Node: Frontends,  Next: Backends,  Prev: Customization,  Up: Top
@@ -1360,8 +1348,6 @@ Variable Index
 * Menu:
 
 * company-after-completion-hook:         Configuration File.  (line  94)
-* company-auto-commit:                   Configuration File.  (line  64)
-* company-auto-commit-chars:             Configuration File.  (line  72)
 * company-backends:                      Backends.            (line  12)
 * company-backends <1>:                  Backends Usage Basics.
                                                               (line   6)
@@ -1386,6 +1372,8 @@ Variable Index
 * company-icon-margin:                   Tooltip Frontends.   (line 164)
 * company-icon-size:                     Tooltip Frontends.   (line 164)
 * company-idle-delay:                    Configuration File.  (line  17)
+* company-insertion-on-trigger:          Configuration File.  (line  64)
+* company-insertion-triggers:            Configuration File.  (line  72)
 * company-ispell-dictionary:             Text Completion.     (line  84)
 * company-lighter-base:                  Configuration File.  (line  59)
 * company-minimum-prefix-length:         Configuration File.  (line   9)
@@ -1659,48 +1647,45 @@ Concept Index
 
 
 Tag Table:
-Node: Top569
-Node: Overview1994
-Node: Terminology2402
-Ref: Terminology-Footnote-13389
-Node: Structure3595
-Node: Getting Started5091
-Node: Installation5369
-Node: Initial Setup5752
-Node: Usage Basics6598
-Node: Commands7361
-Ref: Commands-Footnote-19579
-Node: Customization9746
-Node: Customization Interface10218
-Node: Configuration File10751
-Ref: company-auto-commit14058
-Ref: company-auto-commit-chars14480
-Ref: Configuration File-Footnote-115387
-Node: Frontends15901
-Node: Tooltip Frontends16870
-Ref: Tooltip Frontends-Footnote-127239
-Node: Preview Frontends27476
-Ref: Preview Frontends-Footnote-128732
-Node: Echo Frontends28859
-Node: Candidates Search30392
-Node: Filter Candidates31726
-Node: Quick Access a Candidate32506
-Node: Backends34124
-Node: Backends Usage Basics35222
-Ref: Backends Usage Basics-Footnote-136437
-Node: Grouped Backends36521
-Node: Package Backends38150
-Node: Code Completion39079
-Node: Text Completion41448
-Node: File Name Completion45882
-Node: Template Expansion47430
-Node: Candidates Post-Processing48149
-Node: Troubleshooting49626
-Node: Index51299
-Node: Key Index51462
-Node: Variable Index52961
-Node: Function Index57011
-Node: Concept Index61492
+Node: Top567
+Node: Overview1990
+Node: Terminology2398
+Ref: Terminology-Footnote-13385
+Node: Structure3591
+Node: Getting Started5087
+Node: Installation5365
+Node: Initial Setup5748
+Node: Usage Basics6594
+Node: Commands7357
+Ref: Commands-Footnote-19575
+Node: Customization9742
+Node: Customization Interface10214
+Node: Configuration File10747
+Node: Frontends15413
+Node: Tooltip Frontends16382
+Ref: Tooltip Frontends-Footnote-126751
+Node: Preview Frontends26988
+Ref: Preview Frontends-Footnote-128244
+Node: Echo Frontends28371
+Node: Candidates Search29904
+Node: Filter Candidates31238
+Node: Quick Access a Candidate32018
+Node: Backends33636
+Node: Backends Usage Basics34734
+Ref: Backends Usage Basics-Footnote-135949
+Node: Grouped Backends36033
+Node: Package Backends37662
+Node: Code Completion38591
+Node: Text Completion40960
+Node: File Name Completion45394
+Node: Template Expansion46942
+Node: Candidates Post-Processing47661
+Node: Troubleshooting49138
+Node: Index50811
+Node: Key Index50974
+Node: Variable Index52473
+Node: Function Index56523
+Node: Concept Index61004
 
 End Tag Table
 
