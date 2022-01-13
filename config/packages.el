@@ -179,7 +179,10 @@
   (tide-setup)
   (tide-hl-identifier-mode +1)
   (company-mode +1)
-  (setq tide-completion-ignore-case t))
+  (setq tide-completion-ignore-case t)
+  (setq tide-always-show-documentation t)
+  (setq tide-completion-detailed t)
+  (setq tide-disable-suggestions t))
 
 (add-hook 'typescript-mode-hook #'setup-tide)
 ;; (add-hook 'typescript-mode-hook #'select-flycheck-eslint-if-eslint-exists-locally)
