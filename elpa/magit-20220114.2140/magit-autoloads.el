@@ -926,6 +926,15 @@ with two prefix arguments remove ignored files only.
 
 \(fn &optional ARG)" t nil)
 
+(autoload 'magit-generate-changelog "magit-extras" "\
+Insert ChangeLog entries into the current buffer.
+
+The entries are generated from the diff being committed.
+If prefix argument, AMENDING, is non-nil, include changes
+in HEAD as well as staged changes in the diff to check.
+
+\(fn &optional AMENDING)" t nil)
+
 (autoload 'magit-add-change-log-entry "magit-extras" "\
 Find change log file and add date entry and item for current change.
 This differs from `add-change-log-entry' (which see) in that

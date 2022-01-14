@@ -3,8 +3,8 @@
 ;; Copyright (C) 2018-2022 Free Software Foundation, Inc.
 
 ;; Version: 1.8
-;; Package-Version: 20220112.1835
-;; Package-Commit: 132ea08f97f94ad2e050fc8d1628ecb41de7229a
+;; Package-Version: 20220113.2147
+;; Package-Commit: 3934e6bb43234ffbb62f4d917044174bdace466e
 ;; Author: João Távora <joaotavora@gmail.com>
 ;; Maintainer: João Távora <joaotavora@gmail.com>
 ;; URL: https://github.com/joaotavora/eglot
@@ -28,35 +28,36 @@
 
 ;;; Commentary:
 
-;; Simply M-x eglot should be enough to get you started, but here's a
+;; Eglot ("Emacs Polyglot") is an Emacs LSP client that stays out of
+;; your way.
+;;
+;; Typing M-x eglot should be enough to get you started, but here's a
 ;; little info (see the accompanying README.md or the URL for more).
 ;;
-;; M-x eglot starts a server via a shell-command guessed from
-;; `eglot-server-programs', using the current major-mode (for whatever
+;; M-x eglot starts a server via a shell command guessed from
+;; `eglot-server-programs', using the current major mode (for whatever
 ;; language you're programming in) as a hint.  If it can't guess, it
-;; prompts you in the mini-buffer for these things.  Actually, the
-;; server needen't be locally started: you can connect to a running
-;; server via TCP by entering a <host:port> syntax.
+;; prompts you in the minibuffer for these things.  Actually, the
+;; server does not need to be running locally: you can connect to a
+;; running server via TCP by entering a <host:port> syntax.
 ;;
-;; Anyway, if the connection is successful, you should see an `eglot'
+;; If the connection is successful, you should see an `eglot'
 ;; indicator pop up in your mode-line.  More importantly, this means
-;; current *and future* file buffers of that major mode *inside your
-;; current project* automatically become \"managed\" by the LSP
-;; server, i.e.  information about their contents is exchanged
-;; periodically to provide enhanced code analysis via
+;; that current *and future* file buffers of that major mode *inside
+;; your current project* automatically become \"managed\" by the LSP
+;; server.  In other words, information about their content is
+;; exchanged periodically to provide enhanced code analysis using
 ;; `xref-find-definitions', `flymake-mode', `eldoc-mode',
 ;; `completion-at-point', among others.
 ;;
-;; To "unmanage" these buffers, shutdown the server with M-x
-;; eglot-shutdown.
+;; To "unmanage" these buffers, shutdown the server with
+;; M-x eglot-shutdown.
 ;;
-;; You can also do:
+;; To start an eglot session automatically when a foo-mode buffer is
+;; visited, you can put this in your init file:
 ;;
 ;;   (add-hook 'foo-mode-hook 'eglot-ensure)
-;;
-;; To attempt to start an eglot session automatically every time a
-;; foo-mode buffer is visited.
-;;
+
 ;;; Code:
 
 (require 'json)
@@ -175,6 +176,7 @@ language-server/bin/php-language-server.php"))
                                 (elixir-mode . ("language_server.sh"))
                                 (ada-mode . ("ada_language_server"))
                                 (scala-mode . ("metals-emacs"))
+                                (racket-mode . ("racket" "-l" "racket-langserver"))
                                 ((tex-mode context-mode texinfo-mode bibtex-mode)
                                  . ("digestif"))
                                 (erlang-mode . ("erlang_ls" "--transport" "stdio"))
@@ -251,6 +253,14 @@ CONTACT can be:
 (defface eglot-mode-line
   '((t (:inherit font-lock-constant-face :weight bold)))
   "Face for package-name in EGLOT's mode line.")
+
+(defface eglot-diagnostic-tag-unnecessary-face
+  '((t . (:weight ultra-light)))
+  "Face used to render unused or unnecessary code.")
+
+(defface eglot-diagnostic-tag-deprecated-face
+  '((t . (:strike-through t)))
+  "Face used to render deprecated or obsolete code.")
 
 (defcustom eglot-autoreconnect 3
   "Control ability to reconnect automatically to the LSP server.
@@ -332,6 +342,10 @@ This can be useful when using docker to run a language server.")
     (21 . "Constant") (22 . "Struct") (23 . "Event") (24 . "Operator")
     (25 . "TypeParameter")))
 
+(defconst eglot--tag-faces
+  `((1 . eglot-diagnostic-tag-unnecessary-face)
+    (2 . eglot-diagnostic-tag-deprecated-face)))
+
 (defconst eglot--{} (make-hash-table) "The empty JSON object.")
 
 (defun eglot--executable-find (command &optional remote)
@@ -353,7 +367,7 @@ This can be useful when using docker to run a language server.")
                              :sortText :filterText :insertText :insertTextFormat
                              :textEdit :additionalTextEdits :commitCharacters
                              :command :data))
-      (Diagnostic (:range :message) (:severity :code :source :relatedInformation :codeDescription))
+      (Diagnostic (:range :message) (:severity :code :source :relatedInformation :codeDescription :tags))
       (DocumentHighlight (:range) (:kind))
       (FileSystemWatcher (:globPattern) (:kind))
       (Hover (:contents) (:range))
@@ -695,7 +709,11 @@ treated as in `eglot-dbind'."
                                        ;; TODO: We can support :codeDescription after
                                        ;; adding an appropriate UI to
                                        ;; Flymake.
-                                       :codeDescriptionSupport :json-false))
+                                       :codeDescriptionSupport :json-false
+                                       :tagSupport
+                                       `(:valueSet
+                                         [,@(mapcar
+                                             #'car eglot--tag-faces)])))
             :experimental eglot--{})))
 
 (defclass eglot-lsp-server (jsonrpc-process-connection)
@@ -1030,7 +1048,7 @@ Use current server's or first available Eglot events buffer."
   '()
   "Hook run after a `eglot-lsp-server' instance is created.
 
-That is before a connection was established. Use
+That is before a connection was established.  Use
 `eglot-connect-hook' to hook into when a connection was
 successfully established and the server on the other side has
 received the initializing configuration.
@@ -1811,7 +1829,7 @@ COMMAND is a symbol naming the command."
       (with-current-buffer buffer
         (cl-loop
          for diag-spec across diagnostics
-         collect (eglot--dbind ((Diagnostic) range message severity source)
+         collect (eglot--dbind ((Diagnostic) range message severity source tags)
                      diag-spec
                    (setq message (concat source ": " message))
                    (pcase-let
@@ -1839,7 +1857,11 @@ COMMAND is a symbol naming the command."
 					     ((<= sev 1) 'eglot-error)
                                              ((= sev 2)  'eglot-warning)
                                              (t          'eglot-note))
-                                       message `((eglot-lsp-diag . ,diag-spec)))))
+                                       message `((eglot-lsp-diag . ,diag-spec))
+                                       (and tags
+                                            `((face . ,(mapcar (lambda (tag)
+                                                                 (alist-get tag eglot--tag-faces))
+                                                               tags)))))))
          into diags
          finally (cond (eglot--current-flymake-report-fn
                         (eglot--report-to-flymake diags))
@@ -2754,9 +2776,11 @@ is not active."
 (defun eglot-rename (newname)
   "Rename the current symbol to NEWNAME."
   (interactive
-   (list (read-from-minibuffer (format "Rename `%s' to: " (symbol-at-point))
-                               nil nil nil nil
-                               (symbol-name (symbol-at-point)))))
+   (list (read-from-minibuffer
+          (format "Rename `%s' to: " (or (thing-at-point 'symbol t)
+                                         "unknown symbol"))
+          nil nil nil nil
+          (symbol-name (symbol-at-point)))))
   (unless (eglot--server-capable :renameProvider)
     (eglot--error "Server can't rename!"))
   (eglot--apply-workspace-edit
