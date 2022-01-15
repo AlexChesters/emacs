@@ -73,8 +73,40 @@
                                  root))))
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
+(defun my/use-stylelint-from-node-modules ()
+  "Search node_modules/ for stylelint executable."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (stylelint
+          (and root
+               (expand-file-name "node_modules/.bin/stylelint"
+                                 root))))
+    (when (and stylelint (file-executable-p stylelint))
+      (setq-local flycheck-general-stylelint-executable stylelint))))
 
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+(add-hook 'flycheck-mode-hook #'my/use-stylelint-from-node-modules)
+
+;; A workaround for the fact that Flycheck currently doesn't support
+;; v14+ of stylelint
+;; https://github.com/flycheck/flycheck/issues/1912#issue-1034084913
+(flycheck-define-checker general-stylelint
+  "A checker for CSS and related languages using Stylelint"
+  :command ("stylelint"
+            (eval flycheck-stylelint-args)
+            (option-flag "--quiet" flycheck-stylelint-quiet)
+            (config-file "--config" flycheck-general-stylelintrc))
+  :standard-input t
+  :error-parser flycheck-parse-stylelint
+  :predicate flycheck-buffer-nonempty-p
+  :modes (scss-mode))
+(flycheck-def-config-file-var flycheck-general-stylelintrc
+    (general-stylelint) nil)
+(add-to-list 'flycheck-checkers 'general-stylelint)
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (flycheck-disable-checker 'scss-stylelint)))
 
 ;; git-timemachine
 (use-package git-timemachine)
