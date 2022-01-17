@@ -18,19 +18,6 @@
     (kill-region (region-beginning) (region-end))
     (kill-whole-line)))
 
-(defun kill-all-buffers ()
-  "Close all open buffers."
-  (interactive)
-  (mapc 'kill-buffer (buffer-list))
-  (delete-window))
-
-(defun kill-all-other-buffers ()
-  "Close all open buffers, except the current one."
-  (interactive)
-  (mapc 'kill-buffer
-    (delq (current-buffer)
-      (buffer-list))))
-
 (defun maybe-enable-prettier ()
   "Enables prettier-mode if a .prettierrc exists."
   (if
