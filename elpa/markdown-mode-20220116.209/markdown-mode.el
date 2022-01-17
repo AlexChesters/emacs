@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20220115.1538
-;; Package-Commit: 1f8dda7465b1a62d0a6b992be83649c234ddc362
+;; Package-Version: 20220116.209
+;; Package-Commit: 1d491a4ba022bd80637c1b63a596b506359c5985
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -3386,7 +3386,7 @@ SEQ may be an atom or a sequence."
              (margin-char-width (/ margin-pixel-width (default-font-width))))
         (set-window-margins nil margin-char-width))
     ;; As a fallback, simply set margin based on character count.
-    (set-window-margins nil markdown-marginalize-headers-margin-width)))
+    (set-window-margins nil (1+ markdown-marginalize-headers-margin-width))))
 
 (defun markdown-fontify-headings (last)
   "Add text properties to headings from point to LAST."
