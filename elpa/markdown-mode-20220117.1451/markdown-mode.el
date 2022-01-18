@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20220116.209
-;; Package-Commit: 1d491a4ba022bd80637c1b63a596b506359c5985
+;; Package-Version: 20220117.1451
+;; Package-Commit: c002dc075397143147b5660df289d834d06b5909
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -997,7 +997,7 @@ Compatible with Pandoc, Python Markdown, PHP Markdown Extra, and Leanpub.")
   "Regular expression for Leanpub section markers and related syntax.")
 
 (defconst markdown-regex-sub-superscript
-  "\\(?:^\\|[^\\~^]\\)\\(?1:\\(?2:[~^]\\)\\(?3:[[:alnum:]]+\\)\\(?4:\\2\\)\\)"
+  "\\(?:^\\|[^\\~^]\\)\\(?1:\\(?2:[~^]\\)\\(?3:[-]?[[:alnum:]]+\\)\\(?4:\\2\\)\\)"
   "The regular expression matching a sub- or superscript.
 The leading un-numbered group matches the character before the
 opening tilde or carat, if any, ensuring that it is not a
