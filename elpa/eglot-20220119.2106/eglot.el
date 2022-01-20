@@ -3,8 +3,8 @@
 ;; Copyright (C) 2018-2022 Free Software Foundation, Inc.
 
 ;; Version: 1.8
-;; Package-Version: 20220117.2234
-;; Package-Commit: 34846c7ba7bac62adf38799e19437d8f90471dac
+;; Package-Version: 20220119.2106
+;; Package-Commit: 0fcab44367a362c1ddc73780b6a40eea6d1934b9
 ;; Author: João Távora <joaotavora@gmail.com>
 ;; Maintainer: João Távora <joaotavora@gmail.com>
 ;; URL: https://github.com/joaotavora/eglot
@@ -189,7 +189,8 @@ language-server/bin/php-language-server.php"))
                                 (css-mode . ,(eglot-alternatives '(("vscode-css-language-server" "--stdio") ("css-languageserver" "--stdio"))))
                                 (html-mode . ,(eglot-alternatives '(("vscode-html-language-server" "--stdio") ("html-languageserver" "--stdio"))))
                                 (json-mode . ,(eglot-alternatives '(("vscode-json-language-server" "--stdio") ("json-languageserver" "--stdio"))))
-                                (dockerfile-mode . ("docker-langserver" "--stdio")))
+                                (dockerfile-mode . ("docker-langserver" "--stdio"))
+                                (clojure-mode . ("clojure-lsp")))
   "How the command `eglot' guesses the server to start.
 An association list of (MAJOR-MODE . CONTACT) pairs.  MAJOR-MODE
 identifies the buffers that are to be managed by a specific

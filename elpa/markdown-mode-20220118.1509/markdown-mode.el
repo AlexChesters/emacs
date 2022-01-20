@@ -7,8 +7,8 @@
 ;; Maintainer: Jason R. Blevins <jblevins@xbeta.org>
 ;; Created: May 24, 2007
 ;; Version: 2.5-dev
-;; Package-Version: 20220117.1451
-;; Package-Commit: c002dc075397143147b5660df289d834d06b5909
+;; Package-Version: 20220118.1509
+;; Package-Commit: 541bd7b48a4b7586f3c419f9ee1bb24810e1f56d
 ;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: Markdown, GitHub Flavored Markdown, itex
 ;; URL: https://jblevins.org/projects/markdown-mode/
@@ -997,7 +997,7 @@ Compatible with Pandoc, Python Markdown, PHP Markdown Extra, and Leanpub.")
   "Regular expression for Leanpub section markers and related syntax.")
 
 (defconst markdown-regex-sub-superscript
-  "\\(?:^\\|[^\\~^]\\)\\(?1:\\(?2:[~^]\\)\\(?3:[-]?[[:alnum:]]+\\)\\(?4:\\2\\)\\)"
+  "\\(?:^\\|[^\\~^]\\)\\(?1:\\(?2:[~^]\\)\\(?3:[+-\u2212]?[[:alnum:]]+\\)\\(?4:\\2\\)\\)"
   "The regular expression matching a sub- or superscript.
 The leading un-numbered group matches the character before the
 opening tilde or carat, if any, ensuring that it is not a
@@ -3428,11 +3428,11 @@ SEQ may be an atom or a sequence."
     t))
 
 (defun markdown-fontify-tables (last)
-  (when (and (re-search-forward "|" last t)
-             (markdown-table-at-point-p))
-    (font-lock-append-text-property
-     (line-beginning-position) (min (1+ (line-end-position)) (point-max))
-     'face 'markdown-table-face)
+  (when (re-search-forward "|" last t)
+    (when (markdown-table-at-point-p)
+      (font-lock-append-text-property
+       (line-beginning-position) (min (1+ (line-end-position)) (point-max))
+       'face 'markdown-table-face))
     (forward-line 1)
     t))
 
@@ -3452,27 +3452,27 @@ SEQ may be an atom or a sequence."
 
 (defun markdown-fontify-list-items (last)
   "Apply font-lock properties to list markers from point to LAST."
-  (when (and (markdown-match-list-items last)
-             (not (markdown-code-block-at-point-p (match-beginning 2))))
-    (let* ((indent (length (match-string-no-properties 1)))
-           (level (/ indent markdown-list-indent-width)) ;; level = 0, 1, 2, ...
-           (bullet (nth (mod level (length markdown-list-item-bullets))
-                        markdown-list-item-bullets)))
-      (add-text-properties
-       (match-beginning 2) (match-end 2) '(face markdown-list-face))
-      (when markdown-hide-markup
-        (cond
-         ;; Unordered lists
-         ((string-match-p "[\\*\\+-]" (match-string 2))
-          (add-text-properties
-           (match-beginning 2) (match-end 2) `(display ,bullet)))
-         ;; Definition lists
-         ((string-equal ":" (match-string 2))
-          (let ((display-string
-                 (char-to-string (markdown--first-displayable
-                                  markdown-definition-display-char))))
-            (add-text-properties (match-beginning 2) (match-end 2)
-                                 `(display ,display-string)))))))
+  (when (markdown-match-list-items last)
+    (when (not (markdown-code-block-at-point-p (match-beginning 2)))
+      (let* ((indent (length (match-string-no-properties 1)))
+             (level (/ indent markdown-list-indent-width)) ;; level = 0, 1, 2, ...
+             (bullet (nth (mod level (length markdown-list-item-bullets))
+                          markdown-list-item-bullets)))
+        (add-text-properties
+         (match-beginning 2) (match-end 2) '(face markdown-list-face))
+        (when markdown-hide-markup
+          (cond
+           ;; Unordered lists
+           ((string-match-p "[\\*\\+-]" (match-string 2))
+            (add-text-properties
+             (match-beginning 2) (match-end 2) `(display ,bullet)))
+           ;; Definition lists
+           ((string-equal ":" (match-string 2))
+            (let ((display-string
+                   (char-to-string (markdown--first-displayable
+                                    markdown-definition-display-char))))
+              (add-text-properties (match-beginning 2) (match-end 2)
+                                   `(display ,display-string))))))))
     t))
 
 (defun markdown-fontify-hrs (last)

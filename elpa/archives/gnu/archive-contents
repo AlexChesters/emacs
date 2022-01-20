@@ -1489,15 +1489,16 @@
 	      ("Terrence Brannon" . "metaperl@gmail.com"))
 	     (:maintainer nil . "emacs-devel@gnu.org"))])
  (leaf .
-       [(4 5 2)
+       [(4 5 5)
 	((emacs
 	  (24 1)))
 	"Simplify your init.el configuration, extended use-package" tar
 	((:url . "https://github.com/conao3/leaf.el")
+	 (:keywords "lisp" "settings")
 	 (:maintainer "Naoya Yamashita" . "conao3@gmail.com")
 	 (:authors
 	  ("Naoya Yamashita" . "conao3@gmail.com"))
-	 (:keywords "lisp" "settings"))])
+	 (:commit . "7cc38f9739eadc569b1179fabe7f7893167105da"))])
  (let-alist .
    [(1 0 6)
     ((emacs
@@ -1594,14 +1595,15 @@
 		      (:maintainer "Vitalie Spinu" . "spinuvit@gmail.com")
 		      (:url . "https://github.com/vspinu/math-symbol-lists"))])
  (mct .
-      [(0 3 0)
+      [(0 4 0)
        ((emacs
 	 (27 1)))
        "Minibuffer and Completions in Tandem" tar
        ((:url . "https://gitlab.com/protesilaos/mct")
 	(:maintainer "Protesilaos Stavrou" . "info@protesilaos.com")
 	(:authors
-	 ("Protesilaos Stavrou" . "info@protesilaos.com")))])
+	 ("Protesilaos Stavrou" . "info@protesilaos.com"))
+	(:commit . "e6e5d3318146133f3772a8cdddcf88c974808eaf"))])
  (memory-usage .
 	       [(0 2)
 		nil "Analyze the memory usage of Emacs in various ways" single
@@ -3087,13 +3089,14 @@
 	     ("Ivan Kanis" . "ivan@kanis.fr"))
 	    (:maintainer "Ivan Kanis" . "ivan@kanis.fr"))])
  (xclip .
-	[(1 10)
-	 nil "Copy&paste GUI clipboard from text terminal" single
-	 ((:url . "http://elpa.gnu.org/packages/xclip.html")
-	  (:keywords "convenience" "tools")
+	[(1 11)
+	 nil "Copy&paste GUI clipboard from text terminal" tar
+	 ((:keywords "convenience" "tools")
+	  (:maintainer "Leo Liu" . "sdl.web@gmail.com")
 	  (:authors
 	   ("Leo Liu" . "sdl.web@gmail.com"))
-	  (:maintainer "Leo Liu" . "sdl.web@gmail.com"))])
+	  (:url . "https://elpa.gnu.org/packages/xclip.html")
+	  (:commit . "5b54645cab438e133e27b4690c57066f8271a992"))])
  (xelb .
        [(0 18)
 	((emacs
