@@ -12,6 +12,11 @@
 ;; all-the-icons
 (use-package all-the-icons)
 
+;; anaconda-mode
+(use-package anaconda-mode
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode))
+
 ;; apache-mode
 (use-package apache-mode
   :config
@@ -26,6 +31,13 @@
   :config
   (global-company-mode)
   (add-hook 'markdown-mode-hook (company-mode -1)))
+
+(use-package company-anaconda
+  :ensure t
+  :init (require 'rx)
+  :after (company)
+  :config
+  (add-to-list 'company-backends 'company-anaconda))
 
 ;; csv-mode
 (use-package csv-mode)

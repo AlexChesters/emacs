@@ -23,5 +23,12 @@
 
 (add-hook 'before-save-hook 'whitespace-cleanup) ; clean whitespace on every save
 
+;; by default python binds backtab to a deindent line function
+;; the below means that that binding is removed, allowing my custom
+;; one in keys.el to be used instead
+(add-hook 'python-mode-hook
+  (lambda ()
+    (local-unset-key (kbd "<backtab>"))))
+
 (provide 'misc.el)
 ;;; misc.el ends here
