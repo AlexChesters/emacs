@@ -1355,6 +1355,19 @@ one or more revs read from the minibuffer.
 
 \(fn REVS &optional ARGS FILES)" t nil)
 
+(autoload 'magit-log-head "magit-log" "\
+Show log for `HEAD'.
+
+\(fn &optional ARGS FILES)" t nil)
+
+(autoload 'magit-log-related "magit-log" "\
+Show log for the current branch, its upstream and its push target.
+When the upstream is a local branch, then also show its own
+upstream.  When `HEAD' is detached, then show log for that, the
+previously checked out branch and its upstream and push-target.
+
+\(fn REVS &optional ARGS FILES)" t nil)
+
 (autoload 'magit-log-other "magit-log" "\
 Show log for one or more revs read from the minibuffer.
 The user can input any revision or revisions separated by a
@@ -1363,11 +1376,6 @@ representation of the commit at point, are available as
 completion candidates.
 
 \(fn REVS &optional ARGS FILES)" t nil)
-
-(autoload 'magit-log-head "magit-log" "\
-Show log for `HEAD'.
-
-\(fn &optional ARGS FILES)" t nil)
 
 (autoload 'magit-log-branches "magit-log" "\
 Show log for all local branches and `HEAD'.
@@ -2415,12 +2423,12 @@ See info node `(magit)Debugging Tools' for more information." t nil)
 
 (advice-add 'Info-follow-nearest-node :around 'Info-follow-nearest-node--magit-gitman)
 
+(advice-add 'org-man-export :around 'org-man-export--magit-gitman)
+
 (autoload 'org-man-export--magit-gitman "magit-utils" "\
 
 
 \(fn FN LINK DESCRIPTION FORMAT)" nil nil)
-
-(advice-add 'org-man-export :around 'org-man-export--magit-gitman)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "magit-utils" '("magit-")))
 
