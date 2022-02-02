@@ -3,7 +3,8 @@ my personal emacs configuration
 
 # installation
 1. clone this repo
-1. run `sh scripts/install-dependencies.sh`
+2. install node.js and rush
+3. run `sh scripts/install-dependencies.sh`
 
 # directories
 ## [`config/`](config/)
