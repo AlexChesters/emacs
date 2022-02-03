@@ -4,8 +4,8 @@
 
 ;; Author: Bozhidar Batsov <bozhidar@batsov.dev>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20211220.1144
-;; Package-Commit: fab2c546fdf990f010acb0755004a96510dc07db
+;; Package-Version: 20220203.1326
+;; Package-Commit: df3d73e1f0ff625a09196ff3ba6f4be82a53fb3b
 ;; Keywords: project, convenience
 ;; Version: 2.6.0-snapshot
 ;; Package-Requires: ((emacs "25.1"))
@@ -49,17 +49,23 @@
   (require 'find-dired)
   (require 'subr-x))
 
-(eval-when-compile
-  (defvar ido-mode)
-  (defvar ivy-mode)
-  (defvar helm-mode)
-  (defvar ag-ignore-list)
-  (defvar ggtags-completion-table)
-  (defvar tags-completion-table)
-  (defvar tags-loop-scan)
-  (defvar tags-loop-operate)
-  (defvar eshell-buffer-name)
-  (defvar explicit-shell-file-name))
+;;; Declarations
+;;
+;; A bunch of variable and function declarations
+;; needed to appease the byte-compiler.
+(defvar ido-mode)
+(defvar ivy-mode)
+(defvar helm-mode)
+(defvar ag-ignore-list)
+(defvar ggtags-completion-table)
+(defvar tags-completion-table)
+(defvar tags-loop-scan)
+(defvar tags-loop-operate)
+(defvar eshell-buffer-name)
+(defvar explicit-shell-file-name)
+(defvar grep-files-aliases)
+(defvar grep-find-ignored-directories)
+(defvar grep-find-ignored-files)
 
 (declare-function tags-completion-table "etags")
 (declare-function make-term "term")
@@ -81,11 +87,6 @@
 (declare-function vterm "ext:vterm")
 (declare-function vterm-send-return "ext:vterm")
 (declare-function vterm-send-string "ext:vterm")
-
-(defvar grep-files-aliases)
-(defvar grep-find-ignored-directories)
-(defvar grep-find-ignored-files)
-
 
 ;;; Customization
 (defgroup projectile nil
