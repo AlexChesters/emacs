@@ -4,8 +4,8 @@
 
 ;; Author: Bozhidar Batsov <bozhidar@batsov.dev>
 ;; URL: https://github.com/bbatsov/projectile
-;; Package-Version: 20220211.932
-;; Package-Commit: 0243ad7dc96072126fc6c23e48184a0419bab028
+;; Package-Version: 20220227.551
+;; Package-Commit: 2c948f3a8ed378ae5fd800d2c66aece06ba058b8
 ;; Keywords: project, convenience
 ;; Version: 2.6.0-snapshot
 ;; Package-Requires: ((emacs "25.1"))
@@ -5591,6 +5591,7 @@ thing shown in the mode line otherwise."
          ["Run eshell" projectile-run-eshell]
          ["Run ielm" projectile-run-ielm]
          ["Run term" projectile-run-term]
+         ["Run vterm" projectile-run-vterm]
          "--"
          ["Run GDB" projectile-run-gdb])
         ("Build"
