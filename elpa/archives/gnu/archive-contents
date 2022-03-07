@@ -756,13 +756,16 @@
 	    ("Niklas Eklund" . "niklas.eklund@posteo.net"))
 	   (:commit . "ecf4c57d96eda400d9b2d5cfeaa9244993ae3603"))])
  (dts-mode .
-	   [(0 1 1)
-	    nil "Major mode for Device Tree source files" tar
-	    ((:maintainer "Ben Gamari" . "ben@smart-cactus.org")
+	   [(1 0)
+	    ((emacs
+	      (24)))
+	    "Major mode for Device Tree source files" tar
+	    ((:keywords "languages")
+	     (:maintainer "Ben Gamari" . "ben@smart-cactus.org")
 	     (:authors
 	      ("Ben Gamari" . "ben@smart-cactus.org"))
-	     (:keywords "languages")
-	     (:url . "https://elpa.gnu.org/packages/dts-mode.html"))])
+	     (:url . "https://elpa.gnu.org/packages/dts-mode.html")
+	     (:commit . "8413d2dc9b3347831aa9e8c8b2524af3ef005441"))])
  (easy-escape .
 	      [(0 2 1)
 	       nil "Improve readability of escape characters in regular expressions" tar
@@ -2126,7 +2129,7 @@
 	     ("Phillip Lord" . "phillip.lord@russet.org.uk"))
 	    (:url . "http://elpa.gnu.org/packages/persist.html"))])
  (phps-mode .
-	    [(0 4 17)
+	    [(0 4 18)
 	     ((emacs
 	       (26)))
 	     "Major mode for PHP with code intelligence" tar
@@ -2135,7 +2138,7 @@
 	      (:maintainer "Christian Johansson" . "christian@cvj.se")
 	      (:authors
 	       ("Christian Johansson" . "christian@cvj.se"))
-	      (:commit . "be18349ec97c76919bba2f7ac467385daf1c5626"))])
+	      (:commit . "d1d1d4b9a7b8cb56aa05b95718ff936eec6a5605"))])
  (pinentry .
 	   [(0 1)
 	    nil "GnuPG Pinentry server implementation" single
@@ -3245,12 +3248,12 @@
 	("Mattias Engdegård" . "mattiase@acm.org"))
        (:commit . "a873bbbe9cdf1abab63fc94730966f5a8f9adaa6"))])
  (xref .
-       [(1 4 0)
+       [(1 4 1)
 	((emacs
 	  (26 1)))
 	"Cross-referencing commands" tar
 	((:url . "https://elpa.gnu.org/packages/xref.html")
-	 (:commit . "f0ac4b7797fb16833a7a0c49593f36d88c69d2d5"))])
+	 (:commit . "890b08e41580a716c2f0b3f1a40ef9b52a19372c"))])
  (yasnippet .
 	    [(0 14 0)
 	     ((cl-lib
