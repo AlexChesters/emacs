@@ -3,8 +3,8 @@
 ;; Copyright (C) 2018-2022 Free Software Foundation, Inc.
 
 ;; Version: 1.8
-;; Package-Version: 20220312.957
-;; Package-Commit: 9389d2e4a0976068f129c9b4d20253bc0c562199
+;; Package-Version: 20220318.1054
+;; Package-Commit: f77518711507810b779d87190d0ca0183fc02e10
 ;; Author: João Távora <joaotavora@gmail.com>
 ;; Maintainer: João Távora <joaotavora@gmail.com>
 ;; URL: https://github.com/joaotavora/eglot
@@ -646,13 +646,15 @@ treated as in `eglot-dbind'."
 
 (cl-defgeneric eglot-client-capabilities (server)
   "What the EGLOT LSP client supports for SERVER."
-  (:method (_s)
+  (:method (s)
            (list
             :workspace (list
                         :applyEdit t
                         :executeCommand `(:dynamicRegistration :json-false)
                         :workspaceEdit `(:documentChanges t)
-                        :didChangeWatchedFiles `(:dynamicRegistration t)
+                        :didChangeWatchedFiles
+                        `(:dynamicRegistration
+                          ,(if (eglot--trampish-p s) :json-false t))
                         :symbol `(:dynamicRegistration :json-false)
                         :configuration t)
             :textDocument
@@ -1312,7 +1314,8 @@ fully LSP-compliant servers, this should be set to
   "Calculate current COLUMN as defined by the LSP spec.
 LBP defaults to `line-beginning-position'."
   (/ (- (length (encode-coding-region (or lbp (line-beginning-position))
-                                      (point) 'utf-16 t))
+                                      ;; Fix github#860
+                                      (min (point) (point-max)) 'utf-16 t))
         2)
      2))
 
@@ -1403,9 +1406,7 @@ If optional MARKER, return a marker instead"
   "Convert URI to file path, helped by `eglot--current-server'."
   (when (keywordp uri) (setq uri (substring (symbol-name uri) 1)))
   (let* ((server (eglot-current-server))
-         (remote-prefix (and server
-                             (file-remote-p
-                              (project-root (eglot--project server)))))
+         (remote-prefix (and server (eglot--trampish-p server)))
          (retval (url-filename (url-generic-parse-url (url-unhex-string uri))))
          ;; Remove the leading "/" for local MS Windows-style paths.
          (normalized (if (and (not remote-prefix)
@@ -1519,6 +1520,10 @@ and just return it.  PROMPT shouldn't end with a question mark."
                          default)))
              (cl-find read servers :key name :test #'equal)))
           (t (car servers)))))
+
+(defun eglot--trampish-p (server)
+  "Tell if SERVER's project root is `file-remote-p'."
+  (file-remote-p (project-root (eglot--project server))))
 
 
 ;;; Minor modes

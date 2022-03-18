@@ -1,6 +1,6 @@
-(define-package "all-the-icons" "20220312.1602" "A library for inserting Developer icons"
+(define-package "all-the-icons" "20220316.1339" "A library for inserting Developer icons"
   '((emacs "24.3"))
-  :commit "5bc4cbc5d7ef5c1869bdcc4800267a13950857d5" :authors
+  :commit "a040a01ef50bef5bfd1b82f0141221f334310b1d" :authors
   '(("Dominic Charlesworth" . "dgc336@gmail.com"))
   :maintainer
   '("Dominic Charlesworth" . "dgc336@gmail.com")
