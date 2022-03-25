@@ -3,8 +3,8 @@
 ;; Copyright (C) 2018-2022 Free Software Foundation, Inc.
 
 ;; Version: 1.8
-;; Package-Version: 20220320.1653
-;; Package-Commit: 9eb9353fdc15c91a66ef8f4e53e18b22aa0870cd
+;; Package-Version: 20220324.1606
+;; Package-Commit: 03fc783c4b701fc8c19096b7167b73bd5d8f63a8
 ;; Author: João Távora <joaotavora@gmail.com>
 ;; Maintainer: João Távora <joaotavora@gmail.com>
 ;; URL: https://github.com/joaotavora/eglot
@@ -2840,8 +2840,11 @@ is not active."
                                            :newName ,newname))
    current-prefix-arg))
 
-(defun eglot--region-bounds () "Region bounds if active, else point and nil."
-  (if (use-region-p) `(,(region-beginning) ,(region-end)) `(,(point) nil)))
+(defun eglot--region-bounds ()
+  "Region bounds if active, else bounds of things at point."
+  (if (use-region-p) `(,(region-beginning) ,(region-end))
+    (let ((boftap (bounds-of-thing-at-point 'sexp)))
+      (list (car boftap) (cdr boftap)))))
 
 (defun eglot-code-actions (beg &optional end action-kind)
   "Offer to execute actions of ACTION-KIND between BEG and END.
