@@ -264,6 +264,7 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
+  (setq web-mode-auto-quote-style 2) ; use single quotes
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
 
 ;; whitespace-cleanup-mode
