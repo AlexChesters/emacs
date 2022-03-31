@@ -26,6 +26,13 @@
       (message "apache!")
       (setq tab-width 4))))
 
+;; cfn-mode
+(use-package cfn-mode
+  :config
+  (flycheck-cfn-setup)
+  (add-to-list 'magic-mode-alist
+    '("\\(.\\|\n\\)*Type: AWS::" . cfn-mode)))
+
 ;; company
 (use-package company
   :config
