@@ -178,14 +178,16 @@
   (setq neo-autorefresh t))
 
 ;; poetry
-(add-to-list 'load-path "~/.emacs.d/packages/poetry.el/")
-(require 'poetry)
-(poetry-tracking-mode)
-(setq poetry-tracking-strategy 'switch-buffer)
-(add-hook 'poetry-tracking-mode-hook
-  (lambda ()
-    (message "here")
-    (flycheck-select-checker 'python-pylint)))
+(use-package poetry
+  :ensure t
+  :config
+  (poetry-tracking-mode)
+  (add-hook 'pyvenv-post-activate-hooks
+    (lambda ()
+      ;; reset the pylint checked once the venv has been activated as
+      ;; now the pylint executable will be ready
+      ;; https://github.com/flycheck/flycheck/issues/1505
+      (flycheck-reset-enabled-checker 'python-pylint))))
 
 ;; powerline
 (use-package powerline

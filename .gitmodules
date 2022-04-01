@@ -1,6 +1,3 @@
 [submodule "packages/dtrt-indent"]
 	path = packages/dtrt-indent
 	url = git@github.com:jscheid/dtrt-indent.git
-[submodule "packages/poetry.el"]
-	path = packages/poetry.el
-	url = git@github.com:AlexChesters/poetry.el.git
