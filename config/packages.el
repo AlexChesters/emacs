@@ -77,6 +77,14 @@
   :config
   (add-hook 'js2-mode-hook 'eglot-ensure))
 
+;; esup
+(use-package esup
+  :ensure t
+  :config
+  ;; Work around a bug where esup tries to step into the byte-compiled
+  ;; version of `cl-lib', and fails horribly.
+  (setq esup-depth 0))
+
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :config
