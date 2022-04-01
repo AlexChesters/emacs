@@ -177,6 +177,16 @@
   :config
   (setq neo-autorefresh t))
 
+;; poetry
+(add-to-list 'load-path "~/.emacs.d/packages/poetry.el/")
+(require 'poetry)
+(poetry-tracking-mode)
+(setq poetry-tracking-strategy 'switch-buffer)
+(add-hook 'poetry-tracking-mode-hook
+  (lambda ()
+    (message "here")
+    (flycheck-select-checker 'python-pylint)))
+
 ;; powerline
 (use-package powerline
   :config
