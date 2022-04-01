@@ -41,6 +41,7 @@
 (use-package company
   :config
   (global-company-mode)
+  (setq company-dabbrev-downcase nil)
   (add-hook 'markdown-mode-hook (company-mode -1)))
 
 (use-package company-anaconda
