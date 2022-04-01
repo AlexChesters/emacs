@@ -31,7 +31,11 @@
   :config
   (flycheck-cfn-setup)
   (add-to-list 'magic-mode-alist
-    '("\\(.\\|\n\\)*Type: AWS::" . cfn-mode)))
+    '("\\(.\\|\n\\)*Type: AWS::" . cfn-mode))
+  ;; hack to stop this file from having cfn-mode enabled based on the
+  ;; presence of the cfn-mode magic-mode-alist set up
+  (add-to-list 'magic-mode-alist
+    '("\\(.\\|\n\\)*;;; Commentary" . emacs-lisp-mode)))
 
 ;; company
 (use-package company
