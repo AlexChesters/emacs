@@ -10,3 +10,6 @@ npm install -g typescript typescript-language-server prettier
 rustup toolchain install nightly
 rustup component add rustc-dev --toolchain=nightly
 cargo +nightly install racer
+
+# poetry needed for poetry.el
+curl -sSL https://install.python-poetry.org | python3 -
