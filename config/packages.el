@@ -190,6 +190,7 @@
 (use-package poetry
   :ensure t
   :config
+  (setq poetry-tracking-strategy 'switch-buffer)
   (poetry-tracking-mode)
   (add-hook 'pyvenv-post-activate-hooks
     (lambda ()
