@@ -28,13 +28,13 @@
 		(:authors
 		 ("Jordon Biondo" . "jordonbiondo@gmail.com")))])
  (annotate .
-	   [(1 5 2)
+	   [(1 5 3)
 	    nil "annotate files without changing them" tar
 	    ((:url . "https://github.com/bastibe/annotate.el")
-	     (:maintainer "Bastian Bechtold co-maintainer: cage" . "cage-dev@twistfold.it")
+	     (:maintainer "Bastian Bechtold <bastibe.dev@mailbox.org>, cage" . "cage-dev@twistfold.it")
 	     (:authors
 	      ("Bastian Bechtold"))
-	     (:commit . "96f1d610f27d00bafd32f5021f36bf6ff588e861"))])
+	     (:commit . "e694b977cc82887ce722912a2634ae4b0bc4f5ea"))])
  (anti-zenburn-theme .
 		     [(2 5 1)
 		      nil "Low-contrast Zenburn-inverted theme" tar
@@ -128,14 +128,15 @@
 	     (:authors
 	      ("Dave Pearson" . "davep@davep.org")))])
  (buttercup .
-	    [(1 24)
+	    [(1 25)
 	     ((emacs
 	       (24 3)))
 	     "Behavior-Driven Emacs Lisp Testing" tar
 	     ((:url . "https://github.com/jorgenschaefer/emacs-buttercup")
-	      (:maintainer "Jorgen Schaefer" . "contact@jorgenschaefer.de")
+	      (:maintainer "Ola Nilsson" . "ola.nilsson@gmail.com")
 	      (:authors
-	       ("Jorgen Schaefer" . "contact@jorgenschaefer.de")))])
+	       ("Jorgen Schaefer" . "contact@jorgenschaefer.de"))
+	      (:commit . "ba62f80555d46faf49dc451c0ad20f39f6a170ab"))])
  (caml .
        [(4 9)
 	((emacs
@@ -1306,15 +1307,16 @@
 	   (:authors
 	    ("Vitalie Spinu")))])
  (shellcop .
-	   [(0 0 7)
+	   [(0 0 8)
 	    ((emacs
 	      (25 1)))
 	    "Analyze info&error in shell-mode" tar
 	    ((:url . "https://github.com/redguardtoo/shellcop")
 	     (:keywords "unix" "tools")
-	     (:maintainer "Chen Bin <chenbin DOT sh AT gmail DOT com>")
+	     (:maintainer "Chen Bin" . "chenbin.sh@gmail.com")
 	     (:authors
-	      ("Chen Bin <chenbin DOT sh AT gmail DOT com>")))])
+	      ("Chen Bin" . "chenbin.sh@gmail.com"))
+	     (:commit . "f6060cc292d0143c925252b27d5db21de03ce7f0"))])
  (slime .
 	[(2 26 1)
 	 ((cl-lib
