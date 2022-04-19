@@ -339,6 +339,9 @@ NOTE:
 When starting back narrowing i.e. entering something in minibuffer after \"/\" sorting is done
 again with fuzzy sorting and no more with sorting methods previously selected.
 
+You can use these sort functions only on files or directory,
+see [[Filter out files or directories][Filter out files or directories]].
+ 
 *** Find file at point
 
 Helm uses `ffap' partially or completely to find file at point depending on the
@@ -408,10 +411,14 @@ It starts from the third character of the pattern.
 For instance \"fob\" or \"fbr\" will complete \"foobar\" but \"fb\" needs a
 third character in order to complete it.
 
-*** `\\[helm-execute-persistent-action]' on a filename expands to that filename in the Helm buffer
+*** Watch briefly files contents while navigating
 
-Second hit displays the buffer filename.
-Third hit kills the buffer filename.
+You can use `\\[helm-execute-persistent-action]' on a filename for this, then:
+
+- First hit expands to that filename in the Helm buffer.
+- Second hit displays the buffer filename.
+- Third hit kills the buffer filename.
+
 Note: `\\[universal-argument] \\[helm-execute-persistent-action]' displays the buffer directly.
 
 *** Browse images directories with `helm-follow-mode' and navigate up/down
@@ -2253,12 +2260,14 @@ marking it (`C-c u' or `RET') .
 
 *** You can get help on any command with persistent action (\\<helm-map>\\[helm-execute-persistent-action])
 
+*** You can toggle short docstring description with \\<helm-M-x-map>\\[helm-M-x-toggle-short-doc].
+
 *** History source
 
 Helm-M-x is displaying two sources, one for the commands
 themselves and one for the command history, more exactly
 `extended-command-history', by default the history source is
-displayed in first position, however you can put if in second
+displayed in first position, however you can put it in second
 position if you don't like that by customizing
 `helm-M-x-reverse-history'.
 

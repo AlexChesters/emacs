@@ -3,8 +3,8 @@
 ;; Copyright (C) 2018-2022 Free Software Foundation, Inc.
 
 ;; Version: 1.8
-;; Package-Version: 20220406.1459
-;; Package-Commit: 2c34dae387c583aa307615779ff570a84d5e723c
+;; Package-Version: 20220415.1822
+;; Package-Commit: 777a7169c2c2a5dad6b9ecda3f2aa7a1edda84a9
 ;; Author: João Távora <joaotavora@gmail.com>
 ;; Maintainer: João Távora <joaotavora@gmail.com>
 ;; URL: https://github.com/joaotavora/eglot
@@ -189,6 +189,7 @@ language-server/bin/php-language-server.php"))
                                 (nix-mode . ("rnix-lsp"))
                                 (gdscript-mode . ("localhost" 6008))
                                 ((fortran-mode f90-mode) . ("fortls"))
+                                (futhark-mode . ("futhark" "lsp"))
                                 (lua-mode . ("lua-lsp"))
                                 (zig-mode . ("zls"))
                                 (css-mode . ,(eglot-alternatives '(("vscode-css-language-server" "--stdio") ("css-languageserver" "--stdio"))))
