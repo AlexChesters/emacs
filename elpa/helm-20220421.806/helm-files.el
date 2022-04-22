@@ -3637,10 +3637,10 @@ If PATTERN is a valid directory name, return PATTERN unchanged."
       ;; FIXME: some multi-match methods may not work here.
       (dir-p (concat (regexp-quote bd) " " (regexp-quote bn)))
       ((or (not (helm-ff-fuzzy-matching-p))
-           (string-match "\\s-" bn))    ; Fall back to multi-match.
-       (concat (regexp-quote bd) bn))
+           (string-match "[ !]" bn))    ; Fall back to multi-match.
+       (concat (regexp-quote bd) " " bn))
       ((or (string-match "[*][.]?.*" bn) ; Allow entering wildcard.
-           (string-match "/$" pattern)     ; Allow mkdir.
+           (string-match "/\\'" pattern)     ; Allow mkdir.
            (string-match helm-ff-url-regexp pattern)
            (and (string= helm-ff-default-directory "/") tramp-p))
        ;; Don't treat wildcards ("*") as regexp char.
@@ -3670,35 +3670,6 @@ Note that only existing directories are saved here."
                          nil helm-ff-default-directory)
     (push helm-ff-default-directory helm-ff-history)))
 (add-hook 'helm-cleanup-hook 'helm-ff-save-history)
-
-(defun helm-files-save-file-name-history (&optional force)
-  "Save marked files to `file-name-history'."
-  (let* ((src (helm-get-current-source))
-         (src-name (assoc-default 'name src)))
-    (when (or force (helm-file-completion-source-p src)
-              (member src-name helm-files-save-history-extra-sources))
-      (let ((mkd (helm-marked-candidates :with-wildcard t))
-            (history-delete-duplicates t))
-        (cl-loop for sel in mkd
-                 when (and sel
-                           (stringp sel)
-                           ;; If file was one of HFF candidates assume it
-                           ;; is an existing file, so no need to call
-                           ;; file-exists-p which is costly on remote candidates.
-                           ;; (file-exists-p sel)
-                           (not (helm-ff--file-directory-p sel))
-                           ;; When creating a new directory previous test
-                           ;; check for file-directory-p BEFORE its
-                           ;; creation, so check for ending slash as
-                           ;; well to know if it is a future directory.
-                           (not (string-match "/\\'" sel)))
-                 do
-                 ;; we use `abbreviate-file-name' here because
-                 ;; other parts of Emacs seems to,
-                 ;; and we don't want to introduce duplicates.
-                 (add-to-history 'file-name-history
-                                 (abbreviate-file-name sel)))))))
-(add-hook 'helm-exit-minibuffer-hook 'helm-files-save-file-name-history)
 
 (defun helm-ff-valid-symlink-p (file &optional link)
   "Returns the truename of FILE if it exists.
@@ -6035,6 +6006,35 @@ list."
 ;;
 (defvar helm--file-name-history-hide-deleted nil)
 
+(defun helm-files-save-file-name-history (&optional force)
+  "Save marked files to `file-name-history'."
+  (let* ((src (helm-get-current-source))
+         (src-name (assoc-default 'name src)))
+    (when (or force (helm-file-completion-source-p src)
+              (member src-name helm-files-save-history-extra-sources))
+      (let ((mkd (helm-marked-candidates :with-wildcard t))
+            (history-delete-duplicates t))
+        (cl-loop for sel in mkd
+                 when (and sel
+                           (stringp sel)
+                           ;; If file was one of HFF candidates assume it
+                           ;; is an existing file, so no need to call
+                           ;; file-exists-p which is costly on remote candidates.
+                           ;; (file-exists-p sel)
+                           (not (helm-ff--file-directory-p sel))
+                           ;; When creating a new directory previous test
+                           ;; check for file-directory-p BEFORE its
+                           ;; creation, so check for ending slash as
+                           ;; well to know if it is a future directory.
+                           (not (string-match "/\\'" sel)))
+                 do
+                 ;; we use `abbreviate-file-name' here because
+                 ;; other parts of Emacs seems to,
+                 ;; and we don't want to introduce duplicates.
+                 (add-to-history 'file-name-history
+                                 (abbreviate-file-name sel)))))))
+(add-hook 'helm-exit-minibuffer-hook 'helm-files-save-file-name-history)
+
 (defvar helm-source-file-name-history
   (helm-build-sync-source "File Name History"
     :candidates 'file-name-history
@@ -6105,7 +6105,6 @@ list."
   (let ((src (helm-build-sync-source "File name history"
                :init (lambda ()
                        (with-helm-alive-p
-                         (require 'tramp-archive nil t)
                          (when helm-ff-file-name-history-use-recentf
                            (require 'recentf)
                            (or recentf-mode (recentf-mode 1)))))
