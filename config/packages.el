@@ -223,9 +223,9 @@
   (add-hook 'racer-mode-hook #'company-mode))
 
 ;; rainbow-delemiters-mode
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+;; (use-package rainbow-delimiters
+;;   :config
+;;   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; rust-mode
 (use-package rust-mode
@@ -247,6 +247,9 @@
 (use-package spaceline
   :config
   (spaceline-spacemacs-theme))
+
+;; systemd
+(use-package systemd)
 
 ;; tide
 (defun setup-tide ()
