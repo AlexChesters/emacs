@@ -72,11 +72,6 @@
 (require 'dtrt-indent)
 (dtrt-indent-global-mode)
 
-;; eglot
-(use-package eglot
-  :config
-  (add-hook 'js2-mode-hook 'eglot-ensure))
-
 ;; esup
 (use-package esup
   :ensure t
