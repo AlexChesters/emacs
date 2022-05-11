@@ -150,11 +150,11 @@
 	  ("Damien Doligez" . "damien.doligez@inria.fr"))
 	 (:keywords "ocaml"))])
  (cider .
-	[(1 3 0)
+	[(1 4 0)
 	 ((emacs
 	   (26))
 	  (clojure-mode
-	   (5 12))
+	   (5 14))
 	  (parseedn
 	   (1 0 6))
 	  (queue
@@ -176,7 +176,7 @@
 	   ("Artur Malabarba" . "bruce.connor.am@gmail.com")
 	   ("Hugo Duncan" . "hugo@hugoduncan.org")
 	   ("Steve Purcell" . "steve@sanityinc.com"))
-	  (:commit . "6ddccef1d8cf48515b1cfa0addc1dd41e57e840a"))])
+	  (:commit . "b2cee7fc301735b403920583cc2c23dcf70990a3"))])
  (clojure-mode .
 	       [(5 14 0)
 		((emacs
@@ -295,7 +295,7 @@
 		(:keywords "languages" "elixir")
 		(:commit . "1d94b525ddcc995b5a979de7b050c2309648ca6f"))])
  (elpher .
-	 [(3 3 3)
+	 [(3 4 1)
 	  ((emacs
 	    (27 1)))
 	  "A friendly gopher and gemini client" tar
@@ -304,7 +304,7 @@
 	   (:maintainer "Tim Vaughan" . "plugd@thelambdalab.xyz")
 	   (:authors
 	    ("Tim Vaughan" . "plugd@thelambdalab.xyz"))
-	   (:commit . "ab75cffa4572115c3d6b17348b6bfa2f746f4798"))])
+	   (:commit . "bf0dd36eb2f5b339c6b561dbe3ee9693565b484b"))])
  (evil .
        [(1 15 0)
 	nil "extensible vi layer" tar
@@ -462,7 +462,7 @@
 	       ("Matus Goljer" . "matus.goljer@gmail.com"))
 	      (:commit . "6f9172376af4d399c7853cbdfdd7425348a878f9"))])
  (geiser .
-	 [(0 23 2)
+	 [(0 24)
 	  ((emacs
 	    (25 1))
 	   (transient
@@ -475,7 +475,7 @@
 	   (:maintainer "Jose Antonio Ortega Ruiz" . "jao@gnu.org")
 	   (:authors
 	    ("Jose Antonio Ortega Ruiz" . "jao@gnu.org"))
-	   (:commit . "bc0dde310492de733f9ec528d7aeddd57093d05e"))])
+	   (:commit . "d28d19b582347bffebbf0ca905297e744842a5f2"))])
  (geiser-chez .
 	      [(0 17)
 	       ((emacs
@@ -1587,7 +1587,7 @@
 	      (:authors
 	       ("Le Wang")))])
  (xah-fly-keys .
-	       [(17 6 20220426002628)
+	       [(17 7 20220429090059)
 		((emacs
 		  (24 1)))
 		"ergonomic modal keybinding minor mode." tar
@@ -1596,7 +1596,7 @@
 		 (:maintainer "Xah Lee" . "xah@xahlee.org")
 		 (:authors
 		  ("Xah Lee ( http://xahlee.info/ )"))
-		 (:commit . "437da97c5eea9bf9f81c2280a26a8818e99a0efa"))])
+		 (:commit . "e4db51a90d13eb886b88bbba6a71846653a76e47"))])
  (xml-rpc .
 	  [(1 6 15)
 	   nil "An elisp implementation of clientside XML-RPC" tar
